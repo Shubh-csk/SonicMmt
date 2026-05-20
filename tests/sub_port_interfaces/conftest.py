@@ -508,7 +508,7 @@ def apply_balancing_config(duthost, ptfhost, ptfadapter, define_sub_ports_config
                                         ptfadapter=ptfadapter,
                                         ptf_nn_agent_template=os.path.join(TEMPLATE_DIR, PTF_NN_AGENT_TEMPLATE))
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     if "backend" in tbinfo["topo"]["name"]:
         src_ports = set()
         for vlan_sub_interface in mg_facts['minigraph_vlan_sub_interfaces']:
@@ -519,7 +519,7 @@ def apply_balancing_config(duthost, ptfhost, ptfadapter, define_sub_ports_config
                           + constants.VLAN_SUB_INTERFACE_SEPARATOR + str(vlan_id))
         src_ports = tuple(src_ports)
     else:
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         all_up_ports = set()
         for port in list(mg_facts['minigraph_ports'].keys()):
             all_up_ports.add("eth" + str(mg_facts['minigraph_ptf_indices'][port]))

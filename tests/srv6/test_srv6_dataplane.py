@@ -107,7 +107,7 @@ def setup_uN(duthosts, enum_frontend_dut_hostname, enum_frontend_asic_index, tbi
     duthost = duthosts[enum_frontend_dut_hostname]
     asic_index = enum_frontend_asic_index
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_port_ids = []
     for interface in list(mg_facts["minigraph_ptf_indices"].keys()):
         port_id = mg_facts["minigraph_ptf_indices"][interface]

@@ -232,7 +232,7 @@ def test_vlan_subnet_decap(request, rand_selected_dut, tbinfo, ptfhost, ptfadapt
 def setup_IPv4_SLB_connection(rand_selected_dut, ptfhost, prepare_vlan_subnet_test_port, tbinfo):
     duthost = rand_selected_dut
     # gather DUT's VLAN info
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vlan = list(mg_facts["minigraph_vlans"].keys())[0]
     for vlan_intf in mg_facts["minigraph_vlan_interfaces"]:
         if vlan_intf["attachto"] == vlan and "." in str(vlan_intf['subnet']):
@@ -318,7 +318,7 @@ def setup_IPv6_SLB_connection(rand_selected_dut, ptfhost, prepare_vlan_subnet_te
     duthost = rand_selected_dut
 
     # gather DUT's VLAN info
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vlan = list(mg_facts["minigraph_vlans"].keys())[0]
     for vlan_intf in mg_facts["minigraph_vlan_interfaces"]:
         if vlan_intf["attachto"] == vlan and ":" in str(vlan_intf['subnet']):

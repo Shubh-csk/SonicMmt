@@ -172,7 +172,7 @@ def neighbor_ip(duthosts, enum_rand_one_per_hwsku_hostname, tbinfo):
     # ptf-32 topo is not supported in mirroring
     if tbinfo['topo']['name'] == 'ptf32':
         pytest.skip('Unsupported Topology')
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     dst_ip = None
     if mg_facts["minigraph_portchannel_interfaces"]:
         dst_ip = mg_facts["minigraph_portchannel_interfaces"][0]['peer_addr']

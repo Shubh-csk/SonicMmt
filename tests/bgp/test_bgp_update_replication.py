@@ -151,7 +151,7 @@ def setup_bgp_peers(
     ASN_BASE = 61000
     PORT_BASE = 11000
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     dut_asn = mg_facts["minigraph_bgp_asn"]
     confed_asn = duthost.get_bgp_confed_asn()

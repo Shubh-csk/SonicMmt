@@ -98,7 +98,7 @@ def get_ptf_recv_ports(duthost, tbinfo):
     So we need to collect the uplink ports to do a packet capture
     """
     recv_ports = []
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for ptf_idx in list(mg_facts["minigraph_ptf_indices"].values()):
         recv_ports.append(ptf_idx)
     return recv_ports
@@ -118,7 +118,7 @@ def get_neighbor_info(duthost, dev_port, tbinfo):
     config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     neighs = config_facts['BGP_NEIGHBOR']
     dev_neigh_mdata = config_facts['DEVICE_NEIGHBOR_METADATA'] if 'DEVICE_NEIGHBOR_METADATA' in config_facts else {}
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for neighbor in neighs:
         local_ip = neighs[neighbor]['local_addr']
         nbr_port_alias = get_port_by_ip(config_facts, local_ip)
@@ -164,7 +164,7 @@ def get_all_ptf_recv_ports(duthosts, tbinfo, recv_neigh_list):
     for duthost in duthosts:
         if duthost.is_supervisor_node():
             continue
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         for interface, neighbor in mg_facts["minigraph_neighbors"].items():
             if neighbor['name'] in recv_neigh_list and interface in mg_facts["minigraph_ptf_indices"]:
                 ptf_idx = mg_facts["minigraph_ptf_indices"][interface]
@@ -191,11 +191,11 @@ def get_all_recv_neigh(duthosts, neigh_type):
 
 def get_ptf_send_ports(duthost, tbinfo, dev_port):
     if tbinfo['topo']['name'] in ['t0', 't1-lag', 'm0']:
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         member_port = mg_facts['minigraph_portchannels'][dev_port]['members']
         send_port = mg_facts['minigraph_ptf_indices'][member_port[0]]
     else:
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         ports = natsorted(list(mg_facts['minigraph_ports'].keys()))
         send_port = mg_facts['minigraph_ptf_indices'][ports[0]]
     return send_port

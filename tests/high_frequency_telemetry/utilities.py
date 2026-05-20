@@ -43,7 +43,7 @@ def get_available_ports(duthost, tbinfo, desired_ports=2, min_ports=None):
     """
     cfg_facts = duthost.config_facts(
         host=duthost.hostname, source="persistent")['ansible_facts']
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # Get ports that are up and available
     config_ports = {

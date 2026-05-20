@@ -89,7 +89,7 @@ def common_setup_teardown(rand_selected_dut, request, tbinfo, vmhost):
 def _setup_arp_responder(rand_selected_dut, ptfhost, tbinfo, ip_type):
     logging.info('Setup ARP responder in the PTF container  {}'.format(ptfhost.hostname))
     duthost = rand_selected_dut
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     minigraph_ptf_indices = mg_facts['minigraph_ptf_indices']
     mux_config = mux_cable_server_ip(duthost)
     if ip_type == 'ipv4':

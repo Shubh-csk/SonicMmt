@@ -1,0 +1,1269 @@
+Using packet manipulation module: ptf.packet_scapy
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /opt/venv/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.17.0-22-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'ansible': '26.4.0', 'xdist': '3.8.0', 'metadata': '3.1.1', 'cov': '7.1.0', 'stress': '1.0.1', 'repeat': '0.9.4', 'html': '4.2.0', 'allure-pytest': '2.16.0'}}
+ansible: 2.18.16
+rootdir: /var/src/SonicMmt
+configfile: pyproject.toml
+plugins: ansible-26.4.0, xdist-3.8.0, metadata-3.1.1, cov-7.1.0, stress-1.0.1, repeat-0.9.4, html-4.2.0, allure-pytest-2.16.0
+collecting ... collected 7 items
+
+tests/vlan/test_vlan.py::test_vlan_tc1_send_untagged ERROR
+tests/vlan/test_vlan.py::test_vlan_tc2_send_tagged ERROR
+tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid ERROR
+tests/vlan/test_vlan.py::test_vlan_tc4_tagged_unicast ERROR
+tests/vlan/test_vlan.py::test_vlan_tc5_untagged_unicast ERROR
+tests/vlan/test_vlan.py::test_vlan_tc6_tagged_untagged_unicast ERROR
+tests/vlan/test_vlan.py::test_vlan_tc7_tagged_qinq_switch_on_outer_tag ERROR
+
+==================================== ERRORS ====================================
+________________ ERROR at setup of test_vlan_tc1_send_untagged _________________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc1_send_untagged>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+------------------------------ Captured log setup ------------------------------
+ERROR    tests.conftest:conftest.py:721 Failed to initialize duthosts.
+_________________ ERROR at setup of test_vlan_tc2_send_tagged __________________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc2_send_tagged>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+_______________ ERROR at setup of test_vlan_tc3_send_invalid_vid _______________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc3_send_invalid_vid>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+________________ ERROR at setup of test_vlan_tc4_tagged_unicast ________________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc4_tagged_unicast>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+_______________ ERROR at setup of test_vlan_tc5_untagged_unicast _______________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc5_untagged_unicast>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+___________ ERROR at setup of test_vlan_tc6_tagged_untagged_unicast ____________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc6_tagged_untagged_unicast>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+_______ ERROR at setup of test_vlan_tc7_tagged_qinq_switch_on_outer_tag ________
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+>           host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+
+tests/conftest.py:717: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/common/devices/duthosts.py:79: in __init__
+    self.__initialize_nodes()
+tests/common/devices/duthosts.py:120: in __initialize_nodes
+    MultiAsicSonicHost(
+tests/common/devices/multi_asic.py:39: in __init__
+    self.sonichost = SonicHost(ansible_adhoc, hostname)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:96: in __init__
+    _gathered_facts = self._gather_facts()
+                      ^^^^^^^^^^^^^^^^^^^^
+tests/common/cache/facts_cache.py:284: in wrapper
+    facts = target(*args, **kargs)
+            ^^^^^^^^^^^^^^^^^^^^^^
+tests/common/devices/sonic.py:223: in _gather_facts
+    facts = self.sonic_basic_facts().get('ansible_facts', {})
+            ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <SonicHost sm100-109>, module_name = 'sonic_basic_facts'
+
+    def __getattr__(self, module_name):
+        if self.host.has_module(module_name):
+            def _run_wrapper(*module_args, **kwargs):
+                return self._run(module_name, *module_args, **kwargs)
+            return _run_wrapper
+>       raise AttributeError(
+            "'%s' object has no attribute '%s'" % (self.__class__, module_name)
+            )
+E       AttributeError: '<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'
+
+tests/common/devices/base.py:117: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+item = <Function test_vlan_tc7_tagged_qinq_switch_on_outer_tag>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_runtest_setup(item):
+        """
+        HOOK: Runs once BEFORE every fixture setup.
+        Reset the parallel manager from the previous test (deferred from
+        pytest_runtest_teardown so that pytest_runtest_logreport fires first),
+        then reorder the setup/teardown barriers to ensure barriers run after
+        ALL fixtures of the same scope.
+        """
+        parallel_manager = _PARALLEL_MANAGER
+        if parallel_manager and parallel_manager.terminated:
+            parallel_manager.reset()
+            parallel_manager.current_scope = TaskScope.SESSION
+    
+        logging.debug("[Parallel Fixture] Setup barrier fixtures")
+    
+        barriers = {
+            TaskScope.SESSION.value: ["teardown_barrier_session",
+                                      "setup_barrier_session"],
+            TaskScope.MODULE.value: ["teardown_barrier_module",
+                                     "setup_barrier_module"],
+            TaskScope.CLASS.value: ["teardown_barrier_class",
+                                    "setup_barrier_class"],
+            TaskScope.FUNCTION.value: ["teardown_barrier_function",
+                                       "setup_barrier_function"]
+        }
+        fixtureinfo = item._fixtureinfo
+        current_fixture_names = fixtureinfo.names_closure[:]
+    
+        logging.debug("[Parallel Fixture] Fixture order before:\n%s", current_fixture_names)
+    
+        for fixtures in barriers.values():
+            for fixture in fixtures:
+                if fixture in current_fixture_names:
+                    current_fixture_names.remove(fixture)
+        current_fixture_scopes = []
+        for fixture in current_fixture_names:
+            fixture_defs = fixtureinfo.name2fixturedefs.get(fixture, [])
+            if not fixture_defs:
+                fixture_scope = current_fixture_scopes[-1] \
+                    if current_fixture_scopes else TaskScope.SESSION.value
+            else:
+                try:
+                    fixture_scope = TaskScope[fixture_defs[0].scope.upper()].value
+                except Exception:
+                    logging.debug("[Parallel Fixture] Unknown fixture scope for %r,"
+                                  "default to previous scope", fixture_defs)
+                    fixture_scope = current_fixture_scopes[-1] \
+                        if current_fixture_scopes else TaskScope.SESSION.value
+            current_fixture_scopes.append(fixture_scope)
+    
+        # NOTE: Inject the barriers to ensure they are running last
+        # in the fixtures of the same scope.
+        for scope, fixtures in barriers.items():
+            for fixture in fixtures:
+                if fixture.startswith("setup"):
+                    insert_pos = bisect.bisect_right(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+                if fixture.startswith("teardown"):
+                    insert_pos = bisect.bisect_left(current_fixture_scopes, scope)
+                    current_fixture_names.insert(insert_pos, fixture)
+                    current_fixture_scopes.insert(insert_pos, scope)
+    
+        logging.debug("[Parallel Fixture] Fixture order after:\n%s", current_fixture_names)
+        fixtureinfo.names_closure[:] = current_fixture_names
+    
+>       yield
+
+tests/common/plugins/parallel_fixture/__init__.py:616: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+enhance_inventory = None
+ansible_adhoc = <function ansible_adhoc.<locals>.init_host_mgr at 0x757dcfa9d1c0>
+tbinfo = {'comment': 'simple testbed', 'conf-name': 'sm109-testbed', 'duts': ['sm100-109'], 'duts_map': {'sm100-109': 0}, ...}
+request = <SubRequest 'duthosts' for <Function test_vlan_tc1_send_untagged>>
+ipv6_only_mgmt_enabled = False
+
+    @pytest.fixture(name="duthosts", scope="session")
+    def fixture_duthosts(enhance_inventory, ansible_adhoc, tbinfo, request, ipv6_only_mgmt_enabled):
+        """
+        @summary: fixture to get DUT hosts defined in testbed.
+        @param enhance_inventory: fixture to enhance the capability of parsing the value of pytest cli argument
+        @param ansible_adhoc: Fixture provided by the pytest-ansible package.
+            Source of the various device objects. It is
+            mandatory argument for the class constructors.
+        @param tbinfo: fixture provides information about testbed.
+        @param request: pytest request object
+        @param ipv6_only_mgmt_enabled: fixture to configure IPv6-only management mode before DUT initialization
+        """
+        try:
+            host = DutHosts(ansible_adhoc, tbinfo, request, get_specified_duts(request),
+                            target_hostname=get_target_hostname(request), is_parallel_leader=is_parallel_leader(request))
+            return host
+        except BaseException as e:
+            logger.error("Failed to initialize duthosts.")
+            request.config.cache.set("duthosts_fixture_failed", True)
+>           pt_assert(False, "!!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!"
+                      "Exception: {}".format(repr(e)))
+E           Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+
+tests/conftest.py:723: Failed
+=============================== warnings summary ===============================
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.ptfadapter
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.ansible_fixtures
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.loganalyzer
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.sanity_check
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.test_completeness
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.dualtor
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.fixtures.duthost_utils
+    self.import_plugin(import_spec)
+
+tests/ptf_runner.py:3
+  /var/src/SonicMmt/tests/ptf_runner.py:3: DeprecationWarning: 'pipes' is deprecated and slated for removal in Python 3.13
+    import pipes
+
+tests/vlan/test_vlan.py:181
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:181: PytestUnknownMarkWarning: Unknown pytest.mark.bsl - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.bsl
+
+tests/vlan/test_vlan.py:182
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:182: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py:240
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:240: PytestUnknownMarkWarning: Unknown pytest.mark.bsl - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.bsl
+
+tests/vlan/test_vlan.py:241
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:241: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py:281
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:281: PytestUnknownMarkWarning: Unknown pytest.mark.bsl - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.bsl
+
+tests/vlan/test_vlan.py:282
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:282: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py:327
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:327: PytestUnknownMarkWarning: Unknown pytest.mark.bsl - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.bsl
+
+tests/vlan/test_vlan.py:328
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:328: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py:381
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:381: PytestUnknownMarkWarning: Unknown pytest.mark.bsl - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.bsl
+
+tests/vlan/test_vlan.py:382
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:382: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py:436
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:436: PytestUnknownMarkWarning: Unknown pytest.mark.bsl - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.bsl
+
+tests/vlan/test_vlan.py:437
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:437: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py:509
+  /var/src/SonicMmt/tests/vlan/test_vlan.py:509: PytestUnknownMarkWarning: Unknown pytest.mark.po2vlan - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.po2vlan
+
+tests/vlan/test_vlan.py::test_vlan_tc1_send_untagged
+  /opt/venv/lib/python3.12/site-packages/pytest_ansible/host_manager/v213.py:13: DeprecationWarning: Host management is deprecated and will be removed in a future release
+    class HostManagerV213(BaseHostManager):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/vlan/test_vlan.py::test_vlan_tc1_send_untagged - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+ERROR tests/vlan/test_vlan.py::test_vlan_tc2_send_tagged - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+ERROR tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+ERROR tests/vlan/test_vlan.py::test_vlan_tc4_tagged_unicast - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+ERROR tests/vlan/test_vlan.py::test_vlan_tc5_untagged_unicast - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+ERROR tests/vlan/test_vlan.py::test_vlan_tc6_tagged_untagged_unicast - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+ERROR tests/vlan/test_vlan.py::test_vlan_tc7_tagged_qinq_switch_on_outer_tag - Failed: !!!!!!!!!!!!!!!! duthosts fixture failed !!!!!!!!!!!!!!!!Exception: AttributeError("'<class 'tests.common.devices.sonic.SonicHost'>' object has no attribute 'sonic_basic_facts'")
+======================== 22 warnings, 7 errors in 2.35s ========================

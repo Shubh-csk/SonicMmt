@@ -62,7 +62,7 @@ def remove_dut_ip(duthost, intfs, ips, prefix_len):
 
 
 def get_neighbors(duthost, tbinfo, ipv6=False, count=1):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     prefix_len = 127 if ipv6 else 31
     ip_pattern = '2000:2000::{:x}' if ipv6 else '101.0.0.{}'
     t0_intfs = get_t0_intfs(mg_facts)
@@ -89,7 +89,7 @@ def get_neighbors(duthost, tbinfo, ipv6=False, count=1):
 
 
 def get_neighbors_scale(duthost, tbinfo, ipv6=False, scale_count=1):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     t1_ipv4_pattern = '104.0.{}.{}'
     t1_ipv6_pattern = '2002:2000::{:x}'
     t0_intfs = get_t0_intfs(mg_facts)
@@ -145,7 +145,7 @@ def get_loopback_intf(mg_facts, ipv6):
 
 
 def get_neighbors_multihop(duthost, tbinfo, ipv6=False, count=1):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     t0_ipv4_pattern = '4.{}.{}.1'
     t0_ipv6_pattern = '3000:3000:{:x}::3000'
     t0_intfs = get_t0_intfs(mg_facts)

@@ -308,7 +308,7 @@ def get_ptf_recv_port(duthost, vm_name, tbinfo):
     Get ptf receive port
     """
     port = duthost.shell("show lldp table | grep -w {} | awk '{{print $1}}'".format(vm_name))['stdout']
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     return mg_facts['minigraph_ptf_indices'][port]
 
 
@@ -316,7 +316,7 @@ def get_eth_port(duthost, tbinfo):
     """
     Get ethernet port that connects to T0 VM
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     t0_vm = [vm_name for vm_name in mg_facts['minigraph_devices'].keys() if vm_name.endswith('T0')][0]
     port = duthost.shell("show ip interface | grep -w {} | awk '{{print $1}}'".format(t0_vm))['stdout']
     return port

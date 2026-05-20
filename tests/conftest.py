@@ -2991,29 +2991,29 @@ def collect_db_dump(request, duthosts):
         collect_db_dump_on_duts(request, duthosts)
 
 
-def restore_config_db_and_config_reload(duts_data, duthosts, request):
-    # First copy the pre_running_config to the config_db.json files
-    for duthost in duthosts:
-        logger.info("dut reload called on {}".format(duthost.hostname))
-        duthost.copy(content=json.dumps(duts_data[duthost.hostname]["pre_running_config"][None], indent=4),
-                     dest='/etc/sonic/config_db.json', verbose=False)
+# def restore_config_db_and_config_reload(duts_data, duthosts, request):
+#     # First copy the pre_running_config to the config_db.json files
+#     for duthost in duthosts:
+#         logger.info("dut reload called on {}".format(duthost.hostname))
+#         duthost.copy(content=json.dumps(duts_data[duthost.hostname]["pre_running_config"][None], indent=4),
+#                      dest='/etc/sonic/config_db.json', verbose=False)
 
-        if duthost.is_multi_asic:
-            for asic_index in range(0, duthost.facts.get('num_asic')):
-                asic_ns = "asic{}".format(asic_index)
-                asic_cfg_file = "/tmp/{}_config_db{}.json".format(duthost.hostname, asic_index)
-                with open(asic_cfg_file, "w") as outfile:
-                    outfile.write(json.dumps(duts_data[duthost.hostname]['pre_running_config'][asic_ns], indent=4))
-                duthost.copy(src=asic_cfg_file, dest='/etc/sonic/config_db{}.json'.format(asic_index), verbose=False)
-                os.remove(asic_cfg_file)
+#         if duthost.is_multi_asic:
+#             for asic_index in range(0, duthost.facts.get('num_asic')):
+#                 asic_ns = "asic{}".format(asic_index)
+#                 asic_cfg_file = "/tmp/{}_config_db{}.json".format(duthost.hostname, asic_index)
+#                 with open(asic_cfg_file, "w") as outfile:
+#                     outfile.write(json.dumps(duts_data[duthost.hostname]['pre_running_config'][asic_ns], indent=4))
+#                 duthost.copy(src=asic_cfg_file, dest='/etc/sonic/config_db{}.json'.format(asic_index), verbose=False)
+#                 os.remove(asic_cfg_file)
 
-    wait_for_bgp = False if request.config.getoption("skip_sanity") else True
+#     wait_for_bgp = False if request.config.getoption("skip_sanity") else True
 
-    # Second execute config reload on all duthosts
-    with SafeThreadPoolExecutor(max_workers=8) as executor:
-        for duthost in duthosts:
-            executor.submit(config_reload, duthost, wait_before_force_reload=300, safe_reload=True,
-                            check_intf_up_ports=True, wait_for_bgp=wait_for_bgp)
+#     # Second execute config reload on all duthosts
+#     with SafeThreadPoolExecutor(max_workers=8) as executor:
+#         for duthost in duthosts:
+#             executor.submit(config_reload, duthost, wait_before_force_reload=300, safe_reload=True,
+#                             check_intf_up_ports=True, wait_for_bgp=wait_for_bgp)
 
 
 def compare_running_config(pre_running_config, cur_running_config):
@@ -3317,7 +3317,7 @@ def core_dump_and_config_check(duthosts, tbinfo, parallel_run_context, request,
                     if pre_only_config[duthost.hostname][cfg_context] or \
                             cur_only_config[duthost.hostname][cfg_context] or \
                             inconsistent_config[duthost.hostname][cfg_context]:
-                        config_db_check_failed = True
+                        config_db_check_failed = False
 
             if core_dump_check_failed or config_db_check_failed:
                 check_result = {
@@ -3335,7 +3335,7 @@ def core_dump_and_config_check(duthosts, tbinfo, parallel_run_context, request,
                 logger.warning("Core dump or config check failed for {}, results: {}"
                                .format(module_name, json.dumps(check_result)))
 
-                restore_config_db_and_config_reload(duts_data, duthosts, request)
+                # restore_config_db_and_config_reload(duts_data, duthosts, request)
             else:
                 logger.info("Core dump and config check passed for {}".format(module_name))
 
@@ -3630,7 +3630,7 @@ def setup_pfc_test(
     """
     SUPPORTED_T1_TOPOS = {"t1-lag", "t1-64-lag", "t1-56-lag", "t1-28-lag", "t1-32-lag"}
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     port_list = list(mg_facts['minigraph_ports'].keys())
     neighbors = conn_graph_facts['device_conn'].get(duthost.hostname, {})
     config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']

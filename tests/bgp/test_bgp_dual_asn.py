@@ -57,7 +57,7 @@ PREFIX_V6_2 = "2001:5:5:5::0/64"
 
 
 def lo_intfs(duthost, tbinfo):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     lo_int = lo_int_v6 = []
     for lo_interface in mg_facts["minigraph_lo_interfaces"]:
@@ -155,7 +155,7 @@ class BgpDualAsn:
         duthost = duthosts[rand_one_dut_hostname]
         # TBD, for dual-tor add toggle all to this duthost
 
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
         self.local_asn = mg_facts["minigraph_bgp_asn"]
 

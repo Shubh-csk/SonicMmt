@@ -719,7 +719,7 @@ def test_check_sfputil_low_power_mode(duthosts, enum_rand_one_per_hwsku_frontend
         time.sleep(60)
 
     namespace = duthost.get_namespace_from_asic_id(enum_frontend_asic_index)
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     # TODO Remove this logic when minigraph facts supports namespace in multi_asic
     up_ports = mg_facts["minigraph_ports"]
     if enum_frontend_asic_index is not None:

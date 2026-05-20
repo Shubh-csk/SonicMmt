@@ -15,16 +15,16 @@ cisco_password: "password"
 
 sonic_login: "admin"
 sonic_default_passwords:
- - "YourPaSsWoRd"
+ - "Test1234"
  - "password"
  - "admin"
-sonic_password: "password"
+sonic_password: "Test1234"
 
 k8s_master_login: "ubuntu"
 k8s_master_password: "use_own_value"
 
-ptf_host_user: root
-ptf_host_pass: root
+ptf_host_user: sit
+ptf_host_pass: Test1234
 
 vm_host_user: use_own_value
 vm_host_password: use_own_value

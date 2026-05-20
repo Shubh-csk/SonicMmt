@@ -31,7 +31,7 @@ def is_backend_topology(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbi
         Check if the current test is running on the backend topology.
     """
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     is_backend_topology = mg_facts.get(constants.IS_BACKEND_TOPOLOGY_KEY, False)
 
     return is_backend_topology

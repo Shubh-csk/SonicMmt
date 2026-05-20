@@ -8,7 +8,7 @@ str-msn2700-01,Ethernet20,str-7260-10,Ethernet6,40000,1686,Access,on
 str-msn2700-01,Ethernet24,str-7260-10,Ethernet7,40000,1687,Access,on
 str-msn2700-01,Ethernet28,str-7260-10,Ethernet8,40000,1688,Access,on
 str-msn2700-01,Ethernet32,str-7260-10,Ethernet9,40000,1689,Access,on
-str-msn2700-01,Ethernet36,str-7260-10,Ethernet10,40000,1690,Access,on
+str-msn2700-01,Ethernet36,str-7260-10,Ethernet10,10000,1690,Access,on
 str-msn2700-01,Ethernet40,str-7260-10,Ethernet11,40000,1691,Access,on
 str-msn2700-01,Ethernet44,str-7260-10,Ethernet12,40000,1692,Access,on
 str-msn2700-01,Ethernet48,str-7260-10,Ethernet13,40000,1693,Access,on

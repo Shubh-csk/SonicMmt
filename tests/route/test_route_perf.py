@@ -288,7 +288,7 @@ def test_perf_add_remove_routes(
 ):
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
     asichost = duthost.asic_instance(enum_rand_one_frontend_asic_index)
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     max_scale = request.config.getoption("--max_scale")
     # Number of routes for test
     set_num_routes = request.config.getoption("--num_routes")

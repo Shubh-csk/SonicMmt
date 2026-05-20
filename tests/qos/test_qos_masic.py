@@ -262,7 +262,7 @@ class QosSaiBaseMasic:
         }
         """
 
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         ip_ifaces = duthost.get_active_ip_interfaces(tbinfo, asic_index="all")
 
         port_ips = dict()

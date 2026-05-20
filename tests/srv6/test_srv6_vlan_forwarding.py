@@ -94,7 +94,7 @@ def proxy_arp_enabled(rand_selected_dut):
 @pytest.fixture()
 def setup_downstream_uN(rand_selected_dut, ptfhost, tbinfo):
     duthost = rand_selected_dut
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_ports_map = mg_facts["minigraph_ptf_indices"]
     vlan = list(mg_facts["minigraph_vlans"].keys())[0]
     logger.info("Doing test on VLAN: {}".format(vlan))

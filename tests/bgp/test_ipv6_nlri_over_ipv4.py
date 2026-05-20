@@ -87,7 +87,7 @@ def setup(tbinfo, nbrhosts, duthosts, enum_frontend_dut_hostname, request):
     dut_ip_v6 = tbinfo['topo']['properties']['configuration'][neigh_name]['bgp']['peers'][dut_asn][1].lower()
 
     neigh_namespace = DEFAULT_NAMESPACE
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for dut_port, neigh in mg_facts['minigraph_neighbors'].items():
         if neigh_name == neigh['name']:
             neigh_namespace = neigh['namespace']

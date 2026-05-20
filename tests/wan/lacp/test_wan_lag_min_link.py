@@ -21,7 +21,7 @@ pytestmark = [
 @pytest.fixture(scope="module")
 def get_target_pcs(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinfo):
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    dut_mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    dut_config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     # generate target pc tuples, be like:[("10.0.0.56", "10.0.0.57", "PortChannel0001")]
     peer_ip_pc_pair = [(pc["addr"], pc["peer_addr"], pc["attachto"])
                        for pc in dut_mg_facts["minigraph_portchannel_interfaces"]

@@ -249,7 +249,7 @@ def setup_bgp_graceful_restart(duthosts, rand_one_dut_hostname, nbrhosts, tbinfo
 
 def _setup_arp_responder(duthost, ptfhost, tbinfo, is_v6_topo):
     """Setup arp_responder on PTF with per-port server IP config for dualtor."""
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     minigraph_ptf_indices = mg_facts['minigraph_ptf_indices']
     mux_config = mux_cable_server_ip(duthost)
     ip_type = "server_ipv6" if is_v6_topo else "server_ipv4"
@@ -633,7 +633,7 @@ def setup_interfaces(duthosts, enum_rand_one_per_hwsku_frontend_hostname, ptfhos
         raise TypeError("Unsupported topology: %s" % tbinfo["topo"]["type"])
 
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     with setup_func(mg_facts, peer_count) as connections:
         yield connections
 

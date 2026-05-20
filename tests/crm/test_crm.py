@@ -851,7 +851,7 @@ def get_expected_crm_stats_route_available(crm_stats_route_available, crm_stats_
 
 
 def _get_interface_neighbor_and_port(duthost, tbinfo, dut_interface, nbrhosts):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     if port_channel := mg_facts['minigraph_portchannels'].get(dut_interface):
         dut_interface = port_channel['members'][0]
@@ -1189,7 +1189,7 @@ def test_acl_entry(duthosts, enum_rand_one_per_hwsku_frontend_hostname, enum_fro
     try:
         if duthost.facts["asic_type"] in ["marvell-prestera", "marvell"]:
             # Remove DATA ACL Table and add it again with ports in same port group
-            mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+            config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
             tmp_ports = sorted(mg_facts["minigraph_ports"], key=lambda x: int(x[8:]))
             for i in range(4):
                 if i == 0:
@@ -1260,7 +1260,7 @@ def verify_acl_crm_stats(duthost, asichost, enum_rand_one_per_hwsku_frontend_hos
     if duthost.facts.get("platform_asic", None) == "broadcom-dnx":
         # Each ACL rule consumes an acl entry per bind point
         asicAclBindings = set()
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
         # PCs are a single bind point
         portToLag = {}

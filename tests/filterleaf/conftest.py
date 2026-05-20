@@ -97,7 +97,7 @@ def bgp_allow_list_setup(tbinfo, nbrhosts, duthosts, rand_one_dut_hostname):
     downstream_exabgp_port = EXABGP_BASE_PORT + downstream_offset
     downstream_exabgp_port_v6 = EXABGP_BASE_PORT_V6 + downstream_offset
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     downstream_namespace = DEFAULT_NAMESPACE
 
     for _, neigh in list(mg_facts['minigraph_neighbors'].items()):

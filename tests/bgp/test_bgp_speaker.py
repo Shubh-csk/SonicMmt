@@ -82,7 +82,7 @@ def common_setup_teardown(duthosts, rand_one_dut_hostname, ptfhost, localhost, t
     ptfip = ptfhost.mgmt_ip
     logger.info("ptfip=%s" % ptfip)
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     interface_facts = duthost.interface_facts()['ansible_facts']
 
     constants_stat = duthost.stat(path="/etc/sonic/constants.yml")

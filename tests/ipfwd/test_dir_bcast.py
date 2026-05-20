@@ -70,7 +70,7 @@ def test_dir_bcast(duthosts, rand_one_dut_hostname, ptfhost, tbinfo,
     testbed_type = tbinfo['topo']['name']
 
     # Copy VLAN information file to PTF-docker
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     ptf_test_port_map(duthost, ptfhost, mg_facts, testbed_type, tbinfo)
 

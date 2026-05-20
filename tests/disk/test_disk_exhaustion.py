@@ -60,7 +60,7 @@ def construct_packet_and_get_params(duthost, ptfadapter, tbinfo):
     """
     Construct data packet and get related params
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     is_backend_topo = 'backend' in tbinfo['topo']['name']
     is_v6_topo = is_ipv6_only_topology(tbinfo)
 

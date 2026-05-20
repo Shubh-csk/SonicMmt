@@ -920,7 +920,7 @@ def find_duthost_on_role(duthosts, role, tbinfo):
         if duthost.is_supervisor_node():
             continue
 
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         for interface, neighbor in list(mg_facts["minigraph_neighbors"].items()):
             if role in neighbor["name"]:
                 role_host = duthost
@@ -955,7 +955,7 @@ def get_neighbor_ptf_port_list(duthost, neighbor_name, tbinfo):
     @return a list of port index
         Sample output: [45, 46]
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     neighbor_port_list = get_neighbor_port_list(duthost, neighbor_name)
     ptf_port_list = []
     for neighbor_port in neighbor_port_list:

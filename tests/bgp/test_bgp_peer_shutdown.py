@@ -38,7 +38,7 @@ def common_setup_teardown(
     tbinfo,
 ):
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     conn0 = setup_interfaces[0]
     conn0_ns = (
         DEFAULT_NAMESPACE

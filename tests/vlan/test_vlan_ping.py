@@ -94,7 +94,7 @@ def vlan_ping_setup(duthosts, rand_one_dut_hostname, ptfhost, nbrhosts, tbinfo, 
     output = vm_info['host'].command("ip addr show dev {}".format(dev_name))
     vm_host_info["mac"] = output['stdout_lines'][1].split()[1]
     duthost = duthosts[rand_one_dut_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     if "dualtor-aa" in tbinfo["topo"]["name"]:
         idx = duthosts.index(duthost)
         unselected_duthost = duthosts[1 - idx]

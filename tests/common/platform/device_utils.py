@@ -378,7 +378,7 @@ def check_neighbors(duthost, tbinfo):
         asic_ansible_facts = asichost.bgp_facts()['ansible_facts']
         bgp_facts['bgp_neighbors'].update(asic_ansible_facts['bgp_neighbors'])
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     for value in list(bgp_facts['bgp_neighbors'].values()):
         # Verify locat ASNs in bgp sessions

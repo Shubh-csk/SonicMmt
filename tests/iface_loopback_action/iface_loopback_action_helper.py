@@ -224,7 +224,7 @@ def get_portchannel_peer_port_map(duthost, orig_ports_configuration, tbinfo, nbr
     :return: The dictionary of vm/ports mapping.
     """
     peer_ports_map = {}
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     for _, port_dict in list(orig_ports_configuration.items()):
         port = port_dict['port']

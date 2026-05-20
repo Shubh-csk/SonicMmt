@@ -148,7 +148,7 @@ def setup(duthosts, rand_one_dut_hostname, tbinfo, nbrhosts):
     if not bbr_supported:
         pytest.skip('BGP BBR is not supported')
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     nhipv4 = tbinfo['topo']['properties']['configuration_properties']['common']['nhipv4']
     nhipv6 = tbinfo['topo']['properties']['configuration_properties']['common']['nhipv6']

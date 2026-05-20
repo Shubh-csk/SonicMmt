@@ -143,7 +143,7 @@ def url(mux_server_url, duthost, tbinfo):
                 # For flap_counter, clear_flap_counter, drop(for all), output(for all) or reset
                 return mux_server_url + "/{}".format(action)
             return mux_server_url
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         mbr_index = mg_facts['minigraph_ptf_indices'][interface_name]
         if not action:
             return mux_server_url + "/{}".format(mbr_index)
@@ -922,7 +922,7 @@ def simulator_clear_flap_counter(url, duthost, tbinfo):
     """
     def _simulator_clear_flap_counter(interface_name):
         server_url = url(action=CLEAR_FLAP_COUNTER)
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         mbr_index = mg_facts['minigraph_ptf_indices'][interface_name]
         data = {"port_to_clear": str(mbr_index)}
         pytest_assert(_post(server_url, data), "Failed to clear flap counter for all ports")

@@ -87,7 +87,7 @@ def bring_up_dut_interfaces(request, duthosts, enum_rand_one_per_hwsku_frontend_
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
     yield
     if request.node.rep_call.failed:
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         ports = list(mg_facts['minigraph_ports'].keys())
 
         # Enable outer interfaces

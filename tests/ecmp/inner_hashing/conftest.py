@@ -144,7 +144,7 @@ def build_fib(duthosts, rand_one_dut_hostname, ptfhost, config_facts, tbinfo):
 
     timestamp = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     duthost.shell("redis-dump -d 0 -k 'ROUTE*' -y > /tmp/fib.{}.txt".format(timestamp))
     duthost.fetch(src="/tmp/fib.{}.txt".format(timestamp), dest="/tmp/fib")
@@ -194,7 +194,7 @@ def build_fib(duthosts, rand_one_dut_hostname, ptfhost, config_facts, tbinfo):
 @pytest.fixture(scope='module')
 def vlan_ptf_ports(config_facts, tbinfo, duthost):
     ports = []
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for vlan_members in list(config_facts.get('VLAN_MEMBER', {}).values()):
         for intf in list(vlan_members.keys()):
             dut_port_index = mg_facts['minigraph_ptf_indices'][intf]
@@ -207,7 +207,7 @@ def vlan_ptf_ports(config_facts, tbinfo, duthost):
 @pytest.fixture(scope='module')
 def lag_mem_ptf_ports_groups(config_facts, tbinfo, duthost):
     lag_mem_ptf_ports_groups = []
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for lag_members in list(config_facts.get('PORTCHANNEL_MEMBER', {}).values()):
         lag_group = []
         for intf in list(lag_members.keys()):
@@ -224,7 +224,7 @@ def lag_port_map(duthost, config_facts, vlan_ptf_ports, tbinfo):
     Create lag-port map for vlan ptf ports
     '''
     portchannels = list(config_facts.get('PORTCHANNEL', {}).keys())
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     port_list_idx = 0
     lag_port_map = {}
     port_key_list = list(mg_facts['minigraph_ptf_indices'].keys())
@@ -351,7 +351,7 @@ def config_pbh_table(duthost, vlan_ptf_ports, tbinfo):
 def get_dut_test_intfs_str(duthost, vlan_ptf_ports, tbinfo):
     test_intfs = []
     # get ports according to chosen ptf ports indices
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for intf, index in list(mg_facts['minigraph_ptf_indices'].items()):
         if index in vlan_ptf_ports:
             test_intfs.append(intf)

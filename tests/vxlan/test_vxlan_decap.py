@@ -113,7 +113,7 @@ def setup(duthosts, rand_one_dut_hostname, ptfhost, tbinfo):
     duthost = duthosts[rand_one_dut_hostname]
 
     logger.info("Gather some facts")
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     if "dualtor-aa" in tbinfo["topo"]["name"]:
         idx = duthosts.index(duthost)
         unselected_duthost = duthosts[1 - idx]

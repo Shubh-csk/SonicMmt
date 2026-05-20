@@ -13,7 +13,7 @@ Get certain number of ips within a prefix
 def test_fun(duthosts, rand_one_dut_hostname, tbinfo):
     duthost = duthosts[rand_one_dut_hostname]
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     vlan_addr = mg_facts['minigraph_vlan_interfaces'][0]['addr']
     vlan_prefix = mg_facts['minigraph_vlan_interfaces'][0]['prefixlen']

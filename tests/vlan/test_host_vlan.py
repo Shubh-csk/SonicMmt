@@ -45,7 +45,7 @@ def log_icmp_updates(duthost, iface, save_path):
 def testbed_params(duthosts, rand_one_dut_hostname, tbinfo):
     duthost = duthosts[rand_one_dut_hostname]
     skip_release(duthost, ["201811", "201911"])
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     vlan_intf_name = list(mg_facts["minigraph_vlans"].keys())[0]
     vlan_member_ports = mg_facts["minigraph_vlans"][vlan_intf_name]["members"]

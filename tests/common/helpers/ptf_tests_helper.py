@@ -31,7 +31,7 @@ def get_dut_to_ptf_port_mapping(duthost, tbinfo):
         dict: {interface_name: ptf_index} for interfaces with IP
               {portchannel_name: -1} for PortChannels with IP
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     all_indices = mg_facts.get('minigraph_ptf_indices', {})
     mapping = {}
 
@@ -119,7 +119,7 @@ def detect_portchannel_egress_member(duthost, tbinfo, ptf_adapter, portchannel_n
     logger.info("Detecting egress member for {}".format(portchannel_name))
 
     # Get PortChannel members
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     portchannels = mg_facts.get('minigraph_portchannels', {})
 
     if portchannel_name not in portchannels:
@@ -364,7 +364,7 @@ def apply_dscp_cfg_teardown(duthost, loganalyzer):
 
 
 def find_links(duthost, tbinfo, filter):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for interface, neighbor in list(mg_facts["minigraph_neighbors"].items()):
         filter(interface, neighbor, mg_facts, tbinfo)
 

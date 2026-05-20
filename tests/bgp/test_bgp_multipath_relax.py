@@ -55,7 +55,7 @@ def get_vips_prefix_paths(dut_t0_neigh, vips_prefix, topo_config):
 
 
 def get_bgp_v4_neighbors_from_minigraph(duthost, tbinfo):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # Find all V4 bgp neighbors from minigraph
     bgp_v4nei = {}

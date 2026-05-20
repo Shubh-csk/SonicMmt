@@ -715,7 +715,7 @@ def get_neighbor_info(duthost, dest_port, tbinfo, resolved=True, ip_version=4):
     if not resolved:
         return "20.20.20.100" if ip_version == 4 else "2020::20:20:20:100"
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     for bgp_peer in mg_facts["minigraph_bgp"]:
         if bgp_peer["name"] == mg_facts["minigraph_neighbors"][dest_port]["name"] \

@@ -136,7 +136,7 @@ def ospf_setup(duthosts, rand_one_dut_hostname, nbrhosts, tbinfo, request):
 
     setup_info = {'nbr_addr': {}, 'bgp_routes': []}
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     for bgp_nbr in mg_facts['minigraph_bgp']:
         setup_info['nbr_addr'][bgp_nbr['name']] = bgp_nbr['addr']

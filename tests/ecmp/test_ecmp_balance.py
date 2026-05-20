@@ -80,7 +80,7 @@ def setup(duthosts, duthost, tbinfo):
     # This replaces the original hardcoded ASIC and topology checks
     validate_testbed_for_ecmp_test(duthost, tbinfo)
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     topo = tbinfo["topo"]["type"]
 
     vlan_mac = None

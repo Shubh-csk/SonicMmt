@@ -120,7 +120,7 @@ def dut_dhcp_relay_data(duthosts, rand_one_dut_hostname, tbinfo):
     down_interface_link_local = ""
     down_interface_link_local_with_prefix_len = ""
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # SONiC spawns one DHCP relay agent per VLAN interface configured on the DUT
     vlan_dict = mg_facts['minigraph_vlans']

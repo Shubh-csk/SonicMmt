@@ -72,7 +72,7 @@ def build_pkt(dest_mac, ip_addr, ttl):
 def test_lag_member_forwarding_packets(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinfo, ptfadapter,
                                        loganalyzer):
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     lag_facts = duthost.lag_facts(host=duthost.hostname)['ansible_facts']['lag_facts']
     if not len(lag_facts['lags'].keys()):
         pytest.skip("No Lag found in this topology")

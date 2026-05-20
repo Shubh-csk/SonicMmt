@@ -46,7 +46,7 @@ def get_all_uplink_ptf_recv_ports(duthosts, tbinfo):
             if v['type'] == "RegionalHub" or v['type'] == "AZNGHub":
                 recv_neigh_list.append(k)
 
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         for port, neighbor in mg_facts["minigraph_neighbors"].items():
             if neighbor['name'] in recv_neigh_list and port in mg_facts["minigraph_ptf_indices"]:
                 if 'PortChannel' in port:

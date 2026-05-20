@@ -641,7 +641,7 @@ class TestGroup7CapacityStress:
         self._wait_for_dut_ready(duthost)
 
         # Resolve PTF port mappings
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         router_mac = duthost.facts["router_mac"]
         upstream_ptf_ports = get_upstream_ptf_intfs(mg_facts, tbinfo)
         pytest_assert(

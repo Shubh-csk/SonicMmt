@@ -31,7 +31,7 @@ def testbed_params(define_sub_ports_configuration, duthosts, rand_one_dut_hostna
     """Collect test params."""
     testbed_params = define_sub_ports_configuration["sub_ports"].copy()
     duthost = duthosts[rand_one_dut_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for sub_port, config in list(testbed_params.items()):
         port, vlanid = sub_port.split(constants.VLAN_SUB_INTERFACE_SEPARATOR)
         config["port"] = port

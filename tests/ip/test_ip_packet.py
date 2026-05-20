@@ -62,7 +62,7 @@ class TestIPPacket(object):
     @pytest.fixture(scope="class")
     def common_param(self, duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinfo):
         duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
         # generate peer_ip and port channel pair, be like:[("10.0.0.57", "PortChannel0001")]
         peer_ip_pc_pair = [(pc["peer_addr"], pc["attachto"]) for pc in mg_facts["minigraph_portchannel_interfaces"]

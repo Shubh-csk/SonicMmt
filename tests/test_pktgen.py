@@ -42,7 +42,7 @@ PKTGEN_CMDS = [
 
 
 def get_port_list(duthost, tbinfo):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     return list(mg_facts["minigraph_ports"].keys())
 
 

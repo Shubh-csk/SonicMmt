@@ -3,7 +3,7 @@
     <IsisRouters xmlns:a="http://schemas.datacontract.org/2004/07/Microsoft.Search.Autopilot.Evolution"/>
     <PeeringSessions>
       <BGPSession>
-        <StartRouter>SONIC01DPU</StartRouter>
+        <StartRouter>sm100-109</StartRouter>
         <StartPeer>FC00::4A</StartPeer>
         <EndRouter>vlab-01</EndRouter>
         <EndPeer>FC00::49</EndPeer>
@@ -15,7 +15,7 @@
     <Routers xmlns:a="http://schemas.datacontract.org/2004/07/Microsoft.Search.Autopilot.Evolution">
       <a:BGPRouterDeclaration>
         <a:ASN>64003</a:ASN>
-        <a:Hostname>SONIC01DPU</a:Hostname>
+        <a:Hostname>sm100-109</a:Hostname>
         <a:Peers>
           <BGPPeer>
             <Address>10.0.0.37</Address>
@@ -81,33 +81,41 @@
       <MplsInterfaces/>
       <MplsTeInterfaces/>
       <RsvpInterfaces/>
-      <Hostname>SONIC01DPU</Hostname>
+      <Hostname>sm100-109</Hostname>
       <PortChannelInterfaces>
       </PortChannelInterfaces>
       <VlanInterfaces>
+<VlanInterface>
+  <Name>Vlan1000</Name>
+  <VlanID>1000</VlanID>
+  <AttachTo>Ethernet10;Ethernet11</AttachTo>
+</VlanInterface>
       </VlanInterfaces>
       <IPInterfaces>
-        <IPInterface>
-          <Name i:nil="true"/>
-          <AttachTo>eth1</AttachTo>
-          <Prefix>10.0.0.37/31</Prefix>
-        </IPInterface>
-        <IPInterface>
-          <Name i:Name="true"/>
-          <AttachTo>eth1</AttachTo>
-          <Prefix>fc00::4a/126</Prefix>
-        </IPInterface>
-        <IPInterface>
-          <Name i:nil="true"/>
-          <AttachTo>eth2</AttachTo>
-          <Prefix>10.0.0.39/31</Prefix>
-        </IPInterface>
-        <IPInterface>
-          <Name i:Name="true"/>
-          <AttachTo>eth2</AttachTo>
-          <Prefix>fc00::4e/126</Prefix>
-        </IPInterface>
-      </IPInterfaces>
+  <IPInterface>
+    <Name>Ethernet10</Name>
+    <AttachTo>Ethernet10</AttachTo>
+    <Prefix>10.0.0.37/31</Prefix>
+  </IPInterface>
+
+  <IPInterface>
+    <Name>Ethernet10_v6</Name>
+    <AttachTo>Ethernet10</AttachTo>
+    <Prefix>fc00::4a/126</Prefix>
+  </IPInterface>
+
+  <IPInterface>
+    <Name>Ethernet11</Name>
+    <AttachTo>Ethernet11</AttachTo>
+    <Prefix>10.0.0.39/31</Prefix>
+  </IPInterface>
+
+  <IPInterface>
+    <Name>Ethernet11_v6</Name>
+    <AttachTo>Ethernet11</AttachTo>
+    <Prefix>fc00::4e/126</Prefix>
+  </IPInterface>
+</IPInterfaces>
       <DataAcls/>
       <AclInterfaces>
         <AclInterface>
@@ -136,12 +144,12 @@
           <Type>EverflowV6</Type>
         </AclInterface>
         <AclInterface>
-          <AttachTo>fortyGigE0/0</AttachTo>
+          <AttachTo>Ethernet10</AttachTo>
           <InAcl>DataAcl</InAcl>
           <Type>DataPlane</Type>
         </AclInterface>
         <AclInterface>
-          <AttachTo>fortyGigE0/4</AttachTo>
+          <AttachTo>Ethernet11</AttachTo>
           <InAcl>DataAcl</InAcl>
           <Type>DataPlane</Type>
         </AclInterface>
@@ -154,28 +162,28 @@
       <DeviceLinkBase>
         <ElementType>DeviceInterfaceLink</ElementType>
         <EndDevice>vlab-01</EndDevice>
-        <EndPort>fortyGigE0/16</EndPort>
-        <StartDevice>SONIC01DPU</StartDevice>
-        <StartPort>fortyGigE0/0</StartPort>
+        <EndPort>Ethernet10</EndPort>
+        <StartDevice>sm100-109</StartDevice>
+        <StartPort>Ethernet10</StartPort>
       </DeviceLinkBase>
       <DeviceLinkBase>
         <ElementType>DeviceInterfaceLink</ElementType>
         <EndDevice>vlab-01</EndDevice>
-        <EndPort>fortyGigE0/20</EndPort>
-        <StartDevice>SONIC01DPU</StartDevice>
-        <StartPort>fortyGigE0/4</StartPort>
+        <EndPort>Ethernet11</EndPort>
+        <StartDevice>sm100-109</StartDevice>
+        <StartPort>Ethernet11</StartPort>
       </DeviceLinkBase>
     </DeviceInterfaceLinks>
     <Devices>
       <Device i:type="LeafRouter">
         <Hostname>vlab-01</Hostname>
-        <HwSku>Force10-S6000</HwSku>
+        <HwSku>SONiC-VM</HwSku>
         <ManagementAddress xmlns:a="Microsoft.Search.Autopilot.NetMux">
            <a:IPPrefix>10.250.0.101</a:IPPrefix>
         </ManagementAddress>
       </Device>
-      <Device i:type="DPU">
-         <Hostname>SONIC01DPU</Hostname>
+      <Device i:type="LeafRouter">
+         <Hostname>sm100-109</Hostname>
          <ManagementAddress xmlns:a="Microsoft.Search.Autopilot.NetMux">
            <a:IPPrefix>10.250.0.55</a:IPPrefix>
          </ManagementAddress>
@@ -184,6 +192,7 @@
     </Devices>
   </PngDec>  <DeviceInfos>
     <DeviceInfo>
+  <DeviceType>LeafRouter</DeviceType>
       <AutoNegotiation>true</AutoNegotiation>
       <EthernetInterfaces xmlns:a="http://schemas.datacontract.org/2004/07/Microsoft.Search.Autopilot.Evolution">
         <a:EthernetInterface>
@@ -191,427 +200,37 @@
           <AlternateSpeeds i:nil="true"/>
           <EnableAutoNegotiation>true</EnableAutoNegotiation>
           <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/0</InterfaceName>
+          <Index>10</Index>
+          <InterfaceName>Ethernet10</InterfaceName>
           <InterfaceType i:nil="true"/>
           <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
+          <PortName>Ethernet10</PortName>
           <Priority>0</Priority>
-          <Speed>40000</Speed>
+          <Speed>25000</Speed>
         </a:EthernetInterface>
         <a:EthernetInterface>
           <ElementType>DeviceInterface</ElementType>
           <AlternateSpeeds i:nil="true"/>
           <EnableAutoNegotiation>true</EnableAutoNegotiation>
           <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/4</InterfaceName>
+          <Index>11</Index>
+          <InterfaceName>Ethernet11</InterfaceName>
           <InterfaceType i:nil="true"/>
           <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
+          <PortName>Ethernet11</PortName>
           <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/8</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/12</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/16</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/20</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/24</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/28</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/32</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/36</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/40</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/44</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/48</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/52</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/56</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/60</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/64</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/68</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/72</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/76</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/80</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/84</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/88</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/92</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/96</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/100</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/104</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/108</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/112</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/116</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/120</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
-        </a:EthernetInterface>
-        <a:EthernetInterface>
-          <ElementType>DeviceInterface</ElementType>
-          <AlternateSpeeds i:nil="true"/>
-          <EnableAutoNegotiation>true</EnableAutoNegotiation>
-          <EnableFlowControl>true</EnableFlowControl>
-          <Index>1</Index>
-          <InterfaceName>fortyGigE0/124</InterfaceName>
-          <InterfaceType i:nil="true"/>
-          <MultiPortsInterface>false</MultiPortsInterface>
-          <PortName>0</PortName>
-          <Priority>0</Priority>
-          <Speed>40000</Speed>
+          <Speed>25000</Speed>
         </a:EthernetInterface>
       </EthernetInterfaces>
       <FlowControl>true</FlowControl>
       <Height>0</Height>
-      <HwSku>Force10-S6000</HwSku>
+      <HwSku>SONiC-VM</HwSku>
       <ManagementInterfaces/>
     </DeviceInfo>
   </DeviceInfos>  <MetadataDeclaration>
     <Devices xmlns:a="http://schemas.datacontract.org/2004/07/Microsoft.Search.Autopilot.Evolution">
       <a:DeviceMetadata>
-        <a:Name>SONIC01DPU</a:Name>
+        <a:Name>sm100-109</a:Name>
         <a:Properties>
           <a:DeviceProperty>
             <a:Name>DeploymentId</a:Name>
@@ -673,6 +292,6 @@
     </Devices>
     <Properties xmlns:a="http://schemas.datacontract.org/2004/07/Microsoft.Search.Autopilot.Evolution"/>
   </MetadataDeclaration>
-  <Hostname>SONIC01DPU</Hostname>
-  <HwSku>Force10-S6000</HwSku>
+  <Hostname>sm100-109</Hostname>
+  <HwSku>SONiC-VM</HwSku>
 </DeviceMiniGraph>

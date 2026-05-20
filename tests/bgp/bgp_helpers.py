@@ -307,7 +307,7 @@ def bgp_allow_list_setup(tbinfo, nbrhosts, duthosts, rand_one_dut_hostname):
     downstream_exabgp_port = EXABGP_BASE_PORT + downstream_offset
     downstream_exabgp_port_v6 = EXABGP_BASE_PORT_V6 + downstream_offset
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     downstream_namespace = DEFAULT_NAMESPACE
     for _, neigh in list(mg_facts['minigraph_neighbors'].items()):
         if downstream == neigh['name'] and neigh['namespace']:
@@ -653,7 +653,7 @@ def get_ptf_recv_port(duthost, vm_name, tbinfo, multi_vrf_topo=False):
 
     ports_output = duthost.shell("show lldp table | grep -w {} | awk '{{print $1}}'".format(pattern))['stdout']
     ports = [line.strip() for line in ports_output.split('\n') if line.strip()]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     return [mg_facts['minigraph_ptf_indices'][port] for port in ports]
 
 
@@ -662,7 +662,7 @@ def get_eth_port(duthost, tbinfo):
     Get ethernet port that connects to DOWNSTREAM VM
     """
     ds_type = [dt.upper() for dt in DOWNSTREAM_ALL_NEIGHBOR_MAP[tbinfo["topo"]["type"]]]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm = [vm_name for vm_name in mg_facts['minigraph_devices'].keys() if vm_name.endswith(tuple(ds_type))][0]
     if is_ipv6_only_topology(tbinfo):
         port = duthost.shell("show ipv6 interface | grep -w {} | awk '{{print $1}}'".format(vm))['stdout']

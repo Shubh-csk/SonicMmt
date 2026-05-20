@@ -31,7 +31,7 @@ def radv_test_setup(duthosts, rand_one_dut_hostname, ptfhost, tbinfo):
     """
     duthost = duthosts[rand_one_dut_hostname]
     logging.info("radv_test_setup() DUT {}".format(duthost.hostname))
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # RADVd is configured for each VLAN interface
     vlan_dict = mg_facts['minigraph_vlans']

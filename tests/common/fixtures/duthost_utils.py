@@ -631,7 +631,7 @@ def frontend_asic_index_with_portchannel(request, duthosts, tbinfo):
         dut_hostname = request.getfixturevalue("rand_one_dut_hostname")
 
     duthost = duthosts[dut_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     if duthost.is_multi_asic:
         # For multi-ASIC, find an ASIC with portchannels

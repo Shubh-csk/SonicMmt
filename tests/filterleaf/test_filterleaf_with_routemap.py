@@ -107,7 +107,7 @@ def prepare_param(duthost, tbinfo, get_exabgp_ptf_ports):
     Prepare parameters
     """
     router_mac = duthost.facts["router_mac"]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_ip = tbinfo['ptf_ip']
     total_port_list = get_exabgp_ptf_ports
     exabgp_port_list, ptf_recv_port_list, exabgp_port_list_v6, ptf_recv_port_list_v6 = zip(*total_port_list)

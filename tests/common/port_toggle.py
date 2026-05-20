@@ -33,7 +33,7 @@ def port_toggle(duthost, tbinfo, ports=None, wait_time_getter=None, wait_after_p
         else:
             return set(ports_down) & set(db_ports_down)
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     if not ports:
         logger.info("No ports specified, toggling all minigraph neighbors ports")
         ports = list(mg_facts["minigraph_neighbors"].keys())

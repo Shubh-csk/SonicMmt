@@ -224,7 +224,7 @@ class MacsecPlugin(object):
 
     def find_links(self, duthost, tbinfo, filter):
 
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         for interface, neighbor in mg_facts["minigraph_neighbors"].items():
             filter(interface, neighbor, mg_facts, tbinfo)
 

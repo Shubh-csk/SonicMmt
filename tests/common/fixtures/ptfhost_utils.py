@@ -280,7 +280,7 @@ def _ptf_portmap_file(duthost, ptfhost, tbinfo):
     portList = [port for port in intfInfo if port.startswith('Ethernet') and intfInfo[port]['admin_state'] == 'up']
     pt_assert(wait_until(50, 5, 0, check_link_status, duthost, portList, 'up'), "Partial of Ethernet port didn't go up")
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     portMapFile = "/tmp/default_interface_to_front_map.ini"
     with open(portMapFile, 'w') as file:
         file.write("# ptf host interface @ switch front port name\n")

@@ -10,7 +10,7 @@ ICMP_RESPONDER_PIPE = "/tmp/icmp_responder.pipe"
 @pytest.fixture
 def pause_icmp_responder(duthost, mux_config, ptfhost, tbinfo):     # noqa: F811
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_port_index = mg_facts['minigraph_ptf_indices']
     ptf_ports = {k: ("eth%s" % v) for k, v in list(ptf_port_index.items())}
 

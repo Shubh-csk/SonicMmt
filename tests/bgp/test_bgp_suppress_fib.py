@@ -252,7 +252,7 @@ def prepare_param(duthosts, tbinfo, get_exabgp_ptf_ports, enum_downstream_dut_ho
 
     duthost = duthosts[enum_downstream_dut_hostname]
     router_mac = duthost.facts["router_mac"]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_ip = tbinfo['ptf_ip']
     total_port_list = get_exabgp_ptf_ports
     exabgp_port_list, ptf_recv_port_list, exabgp_port_list_v6, ptf_recv_port_list_v6 = zip(*total_port_list)
@@ -430,7 +430,7 @@ def setup_vrf_cfg(duthost, cfg_facts, nbrhosts, tbinfo, loganalyzer):
         cfg_t1['BGP_NEIGHBOR'][bgp_neighbor].pop('rrclient', None)
     port_list = get_port_connected_with_vm(duthost, tbinfo, nbrhosts)
     vm_list = nbrhosts.keys()
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     port_channel_list = mg_facts['minigraph_portchannels'].keys()
     if len(port_channel_list) == 0:
         upstream_port_list = get_port_connected_with_vm(duthost, tbinfo, nbrhosts, vm_type="T2")
@@ -837,7 +837,7 @@ def validate_route_states(duthost, ipv4_route_list, ipv6_route_list, exabgp_port
     verify_suppress_oth_asic : To Verify that the other asic has no routes with supress enable
     verify_oth_asic: To Verify that the other asic has same routes.
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     as_ns = asic_namespace
     if as_ns is None:
         vm_name = next(

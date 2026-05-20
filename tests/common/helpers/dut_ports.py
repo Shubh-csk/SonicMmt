@@ -74,7 +74,7 @@ def get_vlan_interfaces_dict(duthost, tbinfo):
             }
         }
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     result = {}
 

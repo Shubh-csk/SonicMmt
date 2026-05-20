@@ -666,7 +666,7 @@ def common_setup_teardown(tbinfo, duthosts, rand_one_dut_hostname, ptfhost):
     duthost = duthosts[rand_one_dut_hostname]
 
     try:
-        mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         cfg_facts = duthost.config_facts(host=duthost.hostname, source="persistent")['ansible_facts']
         router_mac = duthost.facts['router_mac']
         net_ports = []

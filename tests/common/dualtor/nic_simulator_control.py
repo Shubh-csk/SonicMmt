@@ -168,7 +168,7 @@ def nic_simulator_client(nic_simulator_channel):
 def mux_status_from_nic_simulator(duthost, nic_simulator_client, active_active_ports_config, tbinfo):   # noqa: F811
     """Get mux status from the nic simulator."""
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_index_map = mg_facts["minigraph_ptf_indices"]
     admin_requests = [nic_simulator_grpc_service_pb2.AdminRequest(portid=[0, 1], state=[True, True])
                       for _ in range(len(active_active_ports_config))]

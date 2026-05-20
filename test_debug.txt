@@ -1,0 +1,240 @@
+WARNING:pytest_ansible.plugin:Unable to find git root, molecule scenarios detection will be skipped.
+Using packet manipulation module: ptf.packet_scapy
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /opt/venv/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.17.0-23-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'ansible': '26.4.0', 'xdist': '3.8.0', 'metadata': '3.1.1', 'cov': '7.1.0', 'stress': '1.0.1', 'repeat': '0.9.4', 'html': '4.2.0', 'allure-pytest': '2.16.0'}}
+ansible: 2.18.16
+rootdir: /var/src/SonicMmt
+configfile: pyproject.toml
+plugins: ansible-26.4.0, xdist-3.8.0, metadata-3.1.1, cov-7.1.0, stress-1.0.1, repeat-0.9.4, html-4.2.0, allure-pytest-2.16.0
+collecting ... collected 1 item
+
+tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization:Hostname: sm100-109, Hwsku: Canoga-SM100, Platform: x86_64-canoga_sm100_sa5-r0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Loading memory monitoring commands for hwsku: Canoga-SM100
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=top, cmd=top -b -n 1, memory_params={'bgpd': {'memory_increase_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': None}, 'zebra': {'memory_increase_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': None}}, memory_check=<function parse_top_output at 0x75f17018f9c0>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=free, cmd=free -m, memory_params={'used': {'memory_increase_threshold': {'type': 'percentage', 'value': '20%'}, 'memory_high_threshold': None}}, memory_check=<function parse_free_output at 0x75f17018fa60>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=docker, cmd=docker stats --no-stream, memory_params={'snmp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 4}}, 'pmon': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 8}}, 'lldp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 4}}, 'gnmi': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 6}}, 'radv': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 3}}, 'syncd': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 7}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 22}}, 'bgp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 4}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 14}}, 'teamd': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 5}}, 'swss': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 5}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 10}}, 'database': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 6}}}, memory_check=<function parse_docker_stats_output at 0x75f17018fba0>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=frr_bgp, cmd=vtysh -c "show memory bgp", memory_params={'used': {'memory_increase_threshold': [{'type': 'percentage', 'value': '50%'}, {'type': 'value', 'value': 64}, {'type': 'comparison', 'value': 'max'}], 'memory_high_threshold': {'type': 'value', 'value': 256}}}, memory_check=<function parse_frr_memory_output at 0x75f17018fc40>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=frr_zebra, cmd=vtysh -c "show memory zebra", memory_params={'used': {'memory_increase_threshold': [{'type': 'percentage', 'value': '50%'}, {'type': 'value', 'value': 64}, {'type': 'comparison', 'value': 'max'}], 'memory_increase_fail_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': {'type': 'value', 'value': 128}}}, memory_check=<function parse_frr_memory_output at 0x75f17018fc40>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=monit, cmd=sudo monit status, memory_params={'memory_usage': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 10}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 70}}}, memory_check=<function parse_monit_validate_output at 0x75f17018fb00>
+INFO:tests.common.plugins.memory_utilization:Triggering monit refresh on sm100-109 before collecting memory data
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 10.8 MB, holding: 1978368.0 bytes, small: 0.0 bytes, ordinary: 9340928.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 15.0 MB, holding: 1052672.0 bytes, small: 0.0 bytes, ordinary: 14680064.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization:Before test: collected memory_values {'before_test': {'sm100-109': {'top': {'zebra': 23.5, 'bgpd': 17.1}, 'free': {'used': 2244}, 'docker': {'lldp': 0.9, 'bgp': 2.0, 'syncd': 0.8, 'teamd': 0.6, 'swss': 1.1, 'pmon': 2.9, 'database': 2.5}, 'frr_bgp': {'used': 10.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.6}}}, 'after_test': {'sm100-109': {}}}
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+{'S-Vlan200': {'admin_status': 'up', 'aging_time': '300', 'frer': 'false', 'learn_disable': 'false', 'maximum_mac_limit': '64', 'terminate': 'true', 'tpid': '0x88A8', 'vlanid': '200'}, 'Vlan1': {'admin_status': 'down', 'aging_time': '300', 'maximum_mac_limit': '64', 'vlanid': '1'}, 'Vlan2': {'admin_status': 'up', 'aging_time': '300', 'frer': 'false', 'learn_disable': 'false', 'maximum_mac_limit': '64', 'rspan': 'false', 'vlanid': '2'}, 'Vlan400': {'admin_status': 'up', 'aging_time': '300', 'frer': 'false', 'learn_disable': 'false', 'maximum_mac_limit': '64', 'rspan': 'false', 'vlanid': '400'}}
+{'S-Vlan200': {'Ethernet15': {'tagging_mode': 'double_tagged'}}, 'Vlan1': {'Ethernet0': {'tagging_mode': 'untagged'}, 'Ethernet1': {'tagging_mode': 'untagged'}, 'Ethernet10': {'tagging_mode': 'untagged'}, 'Ethernet11': {'tagging_mode': 'untagged'}, 'Ethernet12': {'tagging_mode': 'untagged'}, 'Ethernet13': {'tagging_mode': 'untagged'}, 'Ethernet14': {'tagging_mode': 'untagged'}, 'Ethernet2': {'tagging_mode': 'untagged'}, 'Ethernet3': {'tagging_mode': 'untagged'}, 'Ethernet4': {'tagging_mode': 'untagged'}, 'Ethernet5': {'tagging_mode': 'untagged'}, 'Ethernet6': {'tagging_mode': 'untagged'}, 'Ethernet7': {'tagging_mode': 'untagged'}, 'Ethernet8': {'tagging_mode': 'untagged'}, 'Ethernet9': {'tagging_mode': 'untagged'}}, 'Vlan2': {'Ethernet15': {'tagging_mode': 'untagged'}}, 'Vlan400': {'Ethernet0': {'tagging_mode': 'tagged'}}}
+{'Ethernet0': {'admin_status': 'up', 'alias': 'Eth1/1', 'fec': 'none', 'index': '1', 'lanes': '0', 'mtu': '9100', 'speed': '25000'}, 'Ethernet1': {'admin_status': 'up', 'alias': 'Eth1/2', 'fec': 'none', 'index': '2', 'lanes': '1', 'mtu': '9100', 'speed': '25000'}, 'Ethernet10': {'admin_status': 'up', 'alias': 'Eth1/11', 'fec': 'none', 'index': '11', 'lanes': '10', 'mtu': '9100', 'speed': '25000'}, 'Ethernet11': {'admin_status': 'up', 'alias': 'Eth1/12', 'fec': 'none', 'index': '12', 'lanes': '11', 'mtu': '9100', 'speed': '25000'}, 'Ethernet12': {'admin_status': 'up', 'alias': 'Eth1/13', 'fec': 'none', 'index': '13', 'lanes': '12', 'mtu': '9100', 'speed': '25000'}, 'Ethernet13': {'admin_status': 'up', 'alias': 'Eth1/14', 'fec': 'none', 'index': '14', 'lanes': '13', 'mtu': '9100', 'speed': '25000'}, 'Ethernet14': {'admin_status': 'up', 'alias': 'Eth1/15', 'fec': 'none', 'index': '15', 'lanes': '14', 'mtu': '9100', 'speed': '25000'}, 'Ethernet15': {'admin_status': 'up', 'alias': 'Eth1/16', 'fec': 'none', 'index': '16', 'lanes': '15', 'mtu': '9100', 'speed': '25000'}, 'Ethernet2': {'admin_status': 'up', 'alias': 'Eth1/3', 'fec': 'none', 'index': '3', 'lanes': '2', 'mtu': '9100', 'speed': '25000'}, 'Ethernet3': {'admin_status': 'up', 'alias': 'Eth1/4', 'fec': 'none', 'index': '4', 'lanes': '3', 'mtu': '9100', 'speed': '25000'}, 'Ethernet4': {'admin_status': 'up', 'alias': 'Eth1/5', 'fec': 'none', 'index': '5', 'lanes': '4', 'mtu': '9100', 'speed': '25000'}, 'Ethernet5': {'admin_status': 'up', 'alias': 'Eth1/6', 'fec': 'none', 'index': '6', 'lanes': '5', 'mtu': '9100', 'speed': '25000'}, 'Ethernet6': {'admin_status': 'up', 'alias': 'Eth1/7', 'fec': 'none', 'index': '7', 'lanes': '6', 'mtu': '9100', 'speed': '25000'}, 'Ethernet7': {'admin_status': 'up', 'alias': 'Eth1/8', 'fec': 'none', 'index': '8', 'lanes': '7', 'mtu': '9100', 'speed': '25000'}, 'Ethernet8': {'admin_status': 'up', 'alias': 'Eth1/9', 'fec': 'none', 'index': '9', 'lanes': '8', 'mtu': '9100', 'speed': '25000'}, 'Ethernet9': {'admin_status': 'up', 'alias': 'Eth1/10', 'fec': 'none', 'index': '10', 'lanes': '9', 'mtu': '9100', 'speed': '25000'}}
+PASSEDINFO:tests.common.plugins.memory_utilization:Triggering monit refresh on sm100-109 before collecting memory data
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 10.8 MB, holding: 1978368.0 bytes, small: 0.0 bytes, ordinary: 9340928.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 15.0 MB, holding: 1052672.0 bytes, small: 0.0 bytes, ordinary: 14680064.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: top-bgpd
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for top:bgpd: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: top-zebra
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for top:zebra: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: free-used
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for free:used: 448.8
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-snmp
+WARNING:tests.common.plugins.memory_utilization.memory_utilization:Skipping memory check for docker-snmp due to zero value
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-pmon
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:pmon: 8.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:pmon: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-lldp
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:lldp: 4.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:lldp: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-gnmi
+WARNING:tests.common.plugins.memory_utilization.memory_utilization:Skipping memory check for docker-gnmi due to zero value
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-radv
+WARNING:tests.common.plugins.memory_utilization.memory_utilization:Skipping memory check for docker-radv due to zero value
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-syncd
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:syncd: 22.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:syncd: 7.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-bgp
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:bgp: 14.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:bgp: 4.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-teamd
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:teamd: 5.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:teamd: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-swss
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:swss: 10.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:swss: 5.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-database
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:database: 6.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:database: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: frr_bgp-used
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for frr_bgp:used: 256.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Selected max threshold from list: 64.0 (from values: [5.4, 64.0])
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for frr_bgp:used: 64.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: frr_zebra-used
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for frr_zebra:used: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Selected max threshold from list: 64.0 (from values: [7.5, 64.0])
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for frr_zebra:used: 64.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase fail threshold for frr_zebra:used: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: monit-memory_usage
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for monit:memory_usage: 70.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for monit:memory_usage: 10.0
+INFO:tests.common.plugins.memory_utilization:After test: collected memory_values {'before_test': {'sm100-109': {'top': {'zebra': 23.5, 'bgpd': 17.1}, 'free': {'used': 2244}, 'docker': {'lldp': 0.9, 'bgp': 2.0, 'syncd': 0.8, 'teamd': 0.6, 'swss': 1.1, 'pmon': 2.9, 'database': 2.5}, 'frr_bgp': {'used': 10.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.6}}}, 'after_test': {'sm100-109': {'top': {'zebra': 23.5, 'bgpd': 17.1}, 'free': {'used': 2247}, 'docker': {'lldp': 0.9, 'bgp': 2.0, 'syncd': 0.8, 'teamd': 0.6, 'swss': 1.1, 'pmon': 2.9, 'database': 2.5}, 'frr_bgp': {'used': 10.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.6}}}}
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+
+=============================== warnings summary ===============================
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.ptfadapter
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.ansible_fixtures
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.loganalyzer
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.sanity_check
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.test_completeness
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.dualtor
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.fixtures.duthost_utils
+    self.import_plugin(import_spec)
+
+tests/ptf_runner.py:3
+  /var/src/SonicMmt/tests/ptf_runner.py:3: DeprecationWarning: 'pipes' is deprecated and slated for removal in Python 3.13
+    import pipes
+
+tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid
+  /opt/venv/lib/python3.12/site-packages/pytest_ansible/host_manager/v213.py:13: DeprecationWarning: Host management is deprecated and will be removed in a future release
+    class HostManagerV213(BaseHostManager):
+
+tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid
+tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid
+tests/vlan/test_vlan.py::test_vlan_tc3_send_invalid_vid
+  /opt/venv/lib/python3.12/site-packages/ansible/plugins/loader.py:1485: UserWarning: AnsibleCollectionFinder has already been configured
+    warnings.warn('AnsibleCollectionFinder has already been configured')
+
+tests/vlan/test_vlan.py: 28 warnings
+  /usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=3285) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 1 passed, 40 warnings in 59.81s ========================

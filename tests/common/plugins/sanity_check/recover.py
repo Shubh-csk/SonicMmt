@@ -142,7 +142,7 @@ def _neighbor_vm_recover_config(node=None, results=None):
 
 def neighbor_vm_restore(duthost, nbrhosts, tbinfo, result=None):
     logger.info("Restoring neighbor VMs for {}".format(duthost))
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     if vm_neighbors:
         if result and "check_item" in result:

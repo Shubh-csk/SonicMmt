@@ -82,7 +82,7 @@ def setup(tbinfo, nbrhosts, duthosts, enum_frontend_dut_hostname, request):
     logger.info("default namespace {}".format(DEFAULT_NAMESPACE))
 
     tor1_namespace = DEFAULT_NAMESPACE
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for dut_port, neigh in mg_facts['minigraph_neighbors'].items():
         if tor1 == neigh['name']:
             tor1_namespace = neigh['namespace']

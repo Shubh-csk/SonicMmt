@@ -48,7 +48,7 @@ def cfg_facts(duthosts, enum_rand_one_per_hwsku_frontend_hostname, frontend_asic
 @pytest.fixture(scope="module")
 def rand_portchannel_name(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinfo, cfg_facts):
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     portchannel_dict = cfg_facts.get('PORTCHANNEL', {})
     pytest_require(portchannel_dict, "Portchannel table is empty")
 
@@ -67,7 +67,7 @@ def portchannel_table(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinf
         return ipaddress.ip_address(ip_addr).version == 4
 
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     pytest_require("PORTCHANNEL_INTERFACE" in cfg_facts, "Unsupported without port_channel")
     portchannel_table = {}
     for portchannel, ip_addresses in list(cfg_facts["PORTCHANNEL_INTERFACE"].items()):

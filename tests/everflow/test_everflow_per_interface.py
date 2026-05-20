@@ -48,7 +48,7 @@ def build_candidate_ports(duthost, tbinfo, ns):
         candidate_neigh_name = 'M0'
     else:
         candidate_neigh_name = 'T1'
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     i = 0
     for dut_port, neigh in list(mg_facts["minigraph_neighbors"].items()):

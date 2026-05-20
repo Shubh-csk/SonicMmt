@@ -283,3 +283,15 @@
   inv_name: lab
   auto_recover: 'False'
   comment: BMC dual-mgmt testbed
+
+- conf-name: sm109-testbed
+  group-name: ptf1
+  topo: t0
+  ptf_image_name: docker-ptf
+  ptf: ptf-server
+  ptf_ip: 172.16.3.70
+  server: server_1
+  vm_base: VM0001
+  dut:
+    - sm100-109
+  comment: simple testbed

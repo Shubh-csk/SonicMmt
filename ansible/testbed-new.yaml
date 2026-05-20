@@ -149,8 +149,8 @@ devices:
             ansible_ssh_pass: password              # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
             ansible_become_pass: password           # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
             sonicadmin_user: admin                  # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
-            sonicadmin_password: password           # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
-            sonicadmin_initial_password: password   # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
+            sonicadmin_password: "CP!admn"       # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
+            sonicadmin_initial_password: Test1234   # source: sonic-mgmt/ansible/group_vars/lab/secrets.yml
     str-acs-serv-02:                                # source: sonic-mgmt/ansible/lab
         device_type: blank
         hwsku:

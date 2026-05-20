@@ -133,7 +133,7 @@ all:
         mgmt_subnet_mask_length: 24
         mgmt_subnet_v6_mask_length: 64
         ansible_connection: multi_passwd_ssh
-        ansible_altpassword: YourPaSsWoRd
+        ansible_altpassword: Test1234
       children:
         vms_1:
       hosts:
@@ -143,7 +143,7 @@ all:
           type: kvm
           hwsku: Force10-S6000
           serial_port: 9000
-          ansible_password: password
+          ansible_password: Test1234
           ansible_user: admin
         vlab-02:
           ansible_host: 10.250.0.114

@@ -50,7 +50,7 @@ class LagTest:
         self.ptfhost = ptfhost
         self.nbrhosts = nbrhosts
         self.fanouthosts = fanouthosts
-        self.mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+        self.config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         self.conn_graph_facts = conn_graph_facts
         self.vm_neighbors = self.mg_facts['minigraph_neighbors']
         if is_vtestbed(duthost):

@@ -39,7 +39,7 @@ def common_setup_teardown(ptfhost):
 def add_member_back_to_ch_grp(duthost, nbrhosts, tbinfo):
     logger.info("########### Recover channel group configuration ###########")
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
 
     yield
@@ -82,7 +82,7 @@ def get_lag_intf_info(lag_facts, lag_name):
 
 
 def set_lacp_to_slow_mode(duthost, lag_facts, tbinfo):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for lag_name in lag_facts['names']:
         for intf in list(lag_facts['lags'][lag_name]['po_config']['ports'].keys()):
             cmd = "sudo config portchannel member del {} {}".format(lag_name, intf)
@@ -106,7 +106,7 @@ def set_lacp_to_slow_mode(duthost, lag_facts, tbinfo):
 
 
 def set_lacp_to_fast_mode(duthost, lag_facts, tbinfo):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for lag_name in lag_facts['names']:
         for intf in list(lag_facts['lags'][lag_name]['po_config']['ports'].keys()):
             cmd = "sudo config portchannel member del {} {}".format(lag_name, intf)
@@ -130,7 +130,7 @@ def set_lacp_to_fast_mode(duthost, lag_facts, tbinfo):
 
 
 def test_slow_mode_link_down_check(common_setup_teardown, duthost, tbinfo, nbrhosts):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     lag_facts = duthost.lag_facts(host=duthost.hostname)['ansible_facts']['lag_facts']
 
@@ -162,7 +162,7 @@ def test_slow_mode_link_down_check(common_setup_teardown, duthost, tbinfo, nbrho
 
 
 def test_slow_mode_rm_member_check(common_setup_teardown, duthost, tbinfo, nbrhosts, add_member_back_to_ch_grp):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     lag_facts = duthost.lag_facts(host=duthost.hostname)['ansible_facts']['lag_facts']
 
@@ -196,7 +196,7 @@ def test_slow_mode_rm_member_check(common_setup_teardown, duthost, tbinfo, nbrho
 
 
 def test_slow_mode_link_up_check(common_setup_teardown, duthost, tbinfo, nbrhosts):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     lag_facts = duthost.lag_facts(host=duthost.hostname)['ansible_facts']['lag_facts']
 
@@ -228,7 +228,7 @@ def test_slow_mode_link_up_check(common_setup_teardown, duthost, tbinfo, nbrhost
 
 
 def test_fast_mode_link_down_check(common_setup_teardown, duthost, tbinfo, nbrhosts):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     lag_facts = duthost.lag_facts(host=duthost.hostname)['ansible_facts']['lag_facts']
 
@@ -262,7 +262,7 @@ def test_fast_mode_link_down_check(common_setup_teardown, duthost, tbinfo, nbrho
 
 
 def test_fast_mode_link_up_check(common_setup_teardown, duthost, tbinfo, nbrhosts):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vm_neighbors = mg_facts['minigraph_neighbors']
     lag_facts = duthost.lag_facts(host=duthost.hostname)['ansible_facts']['lag_facts']
     set_lacp_to_fast_mode(duthost, lag_facts, tbinfo)

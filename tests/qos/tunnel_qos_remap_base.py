@@ -210,7 +210,7 @@ def dut_config(rand_selected_dut, rand_unselected_dut, tbinfo, ptf_portmap_file_
     Generate a dict including test required params
     '''
     duthost = rand_selected_dut
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     asic_type = duthost.facts["asic_type"]
     if 'platform_asic' in duthost.facts:
@@ -281,7 +281,7 @@ def qos_config(rand_selected_dut, tbinfo, dut_config):
     with open(r"qos/files/qos.yml") as file:
         qos_configs = yaml.load(file, Loader=yaml.FullLoader)
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     vendor = duthost.facts["asic_type"]
     hostvars = duthost.host.options['variable_manager']._hostvars[duthost.hostname]
     dut_asic = None

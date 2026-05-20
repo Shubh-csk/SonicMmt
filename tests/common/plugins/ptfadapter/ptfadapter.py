@@ -92,6 +92,7 @@ class PtfTestAdapter(BaseTest):
             ptf.config.update(ptf_config)
 
         for ptfagent in self.ptfagents:
+            ptfagent.ptf_nn_port = 10913
             ptf_nn_sock_addr = 'tcp://{}:{}'.format(ptfagent.ptf_ip, ptfagent.ptf_nn_port)
             ptf.config['device_sockets'].append((ptfagent.device_num, ptfagent.ptf_port_set, ptf_nn_sock_addr))
 

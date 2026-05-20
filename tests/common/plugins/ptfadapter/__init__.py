@@ -224,7 +224,7 @@ def ptfadapter(ptfhosts, tbinfo, request, duthost):
 
         adapter.duthost = duthost
         if check_if_use_minigraph_from_tbinfo(tbinfo):
-            adapter.mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+            adapter.config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
         check_nn_agent_ready(adapter)
         yield adapter
 

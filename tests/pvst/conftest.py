@@ -46,7 +46,7 @@ def setup_pvst_test_data(duthosts, rand_one_dut_hostname, ptfhost, tbinfo):
     Used for PVST protocol validation.
     """
     duthost = duthosts[rand_one_dut_hostname]
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # Step 1: Gather VLAN members (Ethernet only)
     vlan_name, vlan_info = list(mg_facts["minigraph_vlans"].items())[0]

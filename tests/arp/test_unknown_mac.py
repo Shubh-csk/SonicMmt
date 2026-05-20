@@ -82,7 +82,7 @@ def unknownMacSetup(duthosts, rand_one_dut_hostname, tbinfo):
     asic_type = duthost.facts["asic_type"]
     pytest_require(asic_type not in ["mellanox", "barefoot"], "Test is not supported for platform {}".format(asic_type))
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     is_backend_topology = mg_facts.get(constants.IS_BACKEND_TOPOLOGY_KEY, False)
     server_ips = []
     if 'dualtor' in tbinfo['topo']['name']:

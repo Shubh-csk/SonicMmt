@@ -41,7 +41,7 @@ def setup(duthosts, rand_one_dut_hostname, ptfhost, tbinfo, config_sflow_feature
     if 'sflow' not in feature_status or feature_status['sflow'] == 'disabled':
         pytest.skip("sflow feature is not enabled")
 
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     var['router_mac'] = duthost.facts['router_mac']
     vlan_dict = mg_facts['minigraph_vlans']
     var['test_ports'] = []
@@ -411,7 +411,7 @@ def selected_portchannel_members(duthosts, rand_one_dut_hostname, tbinfo):
          ['Ethernet240', 'Ethernet244'],
          ['Ethernet248', 'Ethernet252']]
     """
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     portchannel_interfaces_list = [details['members'] for details in mg_facts["minigraph_portchannels"].values()]
     if len(portchannel_interfaces_list) < 2:
         pytest.skip("The test requires at least two portchannels with multiple members")

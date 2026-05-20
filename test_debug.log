@@ -1,0 +1,863 @@
+WARNING:pytest_ansible.plugin:Unable to find git root, molecule scenarios detection will be skipped.
+Using packet manipulation module: ptf.packet_scapy
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /opt/venv/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.17.0-22-generic-x86_64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'ansible': '26.4.0', 'xdist': '3.8.0', 'metadata': '3.1.1', 'cov': '7.1.0', 'stress': '1.0.1', 'repeat': '0.9.4', 'html': '4.2.0', 'allure-pytest': '2.16.0'}}
+ansible: 2.18.16
+rootdir: /var/src/SonicMmt
+configfile: pyproject.toml
+plugins: ansible-26.4.0, xdist-3.8.0, metadata-3.1.1, cov-7.1.0, stress-1.0.1, repeat-0.9.4, html-4.2.0, allure-pytest-2.16.0
+collecting ... collected 1 item
+
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization:Hostname: sm100-109, Hwsku: Canoga-SM100, Platform: x86_64-canoga_sm100_sa5-r0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Loading memory monitoring commands for hwsku: Canoga-SM100
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=top, cmd=top -b -n 1, memory_params={'bgpd': {'memory_increase_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': None}, 'zebra': {'memory_increase_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': None}}, memory_check=<function parse_top_output at 0x7269e1ba3ce0>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=free, cmd=free -m, memory_params={'used': {'memory_increase_threshold': {'type': 'percentage', 'value': '20%'}, 'memory_high_threshold': None}}, memory_check=<function parse_free_output at 0x7269e1ba3d80>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=docker, cmd=docker stats --no-stream, memory_params={'snmp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 4}}, 'pmon': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 8}}, 'lldp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 4}}, 'gnmi': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 6}}, 'radv': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 3}}, 'syncd': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 7}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 22}}, 'bgp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 4}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 14}}, 'teamd': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 5}}, 'swss': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 5}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 10}}, 'database': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 6}}}, memory_check=<function parse_docker_stats_output at 0x7269e1ba3ec0>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=frr_bgp, cmd=vtysh -c "show memory bgp", memory_params={'used': {'memory_increase_threshold': [{'type': 'percentage', 'value': '50%'}, {'type': 'value', 'value': 64}, {'type': 'comparison', 'value': 'max'}], 'memory_high_threshold': {'type': 'value', 'value': 256}}}, memory_check=<function parse_frr_memory_output at 0x7269e1ba3f60>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=frr_zebra, cmd=vtysh -c "show memory zebra", memory_params={'used': {'memory_increase_threshold': [{'type': 'percentage', 'value': '50%'}, {'type': 'value', 'value': 64}, {'type': 'comparison', 'value': 'max'}], 'memory_increase_fail_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': {'type': 'value', 'value': 128}}}, memory_check=<function parse_frr_memory_output at 0x7269e1ba3f60>
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Registering command: name=monit, cmd=sudo monit status, memory_params={'memory_usage': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 10}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 70}}}, memory_check=<function parse_monit_validate_output at 0x7269e1ba3e20>
+INFO:tests.common.plugins.memory_utilization:Triggering monit refresh on sm100-109 before collecting memory data
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 8.8 MB, holding: 0.0 bytes, small: 0.0 bytes, ordinary: 9185280.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 15.0 MB, holding: 1052672.0 bytes, small: 0.0 bytes, ordinary: 14680064.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization:Before test: collected memory_values {'before_test': {'sm100-109': {'top': {'zebra': 20.9, 'bgpd': 14.2}, 'free': {'used': 2232}, 'docker': {'lldp': 0.9, 'bgp': 1.8, 'syncd': 0.6, 'teamd': 0.6, 'swss': 0.9, 'pmon': 2.9, 'database': 2.2}, 'frr_bgp': {'used': 8.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.4}}}, 'after_test': {'sm100-109': {}}}
+PASSEDINFO:tests.common.plugins.memory_utilization:Triggering monit refresh on sm100-109 before collecting memory data
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 8.8 MB, holding: 0.0 bytes, small: 0.0 bytes, ordinary: 9185280.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Total FRR memory used: 15.0 MB, holding: 1052672.0 bytes, small: 0.0 bytes, ordinary: 14680064.0 bytes
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: top-bgpd
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for top:bgpd: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: top-zebra
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for top:zebra: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: free-used
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for free:used: 446.4
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-snmp
+WARNING:tests.common.plugins.memory_utilization.memory_utilization:Skipping memory check for docker-snmp due to zero value
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-pmon
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:pmon: 8.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:pmon: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-lldp
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:lldp: 4.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:lldp: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-gnmi
+WARNING:tests.common.plugins.memory_utilization.memory_utilization:Skipping memory check for docker-gnmi due to zero value
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-radv
+WARNING:tests.common.plugins.memory_utilization.memory_utilization:Skipping memory check for docker-radv due to zero value
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-syncd
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:syncd: 22.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:syncd: 7.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-bgp
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:bgp: 14.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:bgp: 4.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-teamd
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:teamd: 5.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:teamd: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-swss
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:swss: 10.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:swss: 5.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: docker-database
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for docker:database: 6.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for docker:database: 2.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: frr_bgp-used
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for frr_bgp:used: 256.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Selected max threshold from list: 64.0 (from values: [4.4, 64.0])
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for frr_bgp:used: 64.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: frr_zebra-used
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for frr_zebra:used: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Selected max threshold from list: 64.0 (from values: [7.5, 64.0])
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for frr_zebra:used: 64.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase fail threshold for frr_zebra:used: 128.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Checking thresholds for command: monit-memory_usage
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated high threshold for monit:memory_usage: 70.0
+INFO:tests.common.plugins.memory_utilization.memory_utilization:Calculated increase threshold for monit:memory_usage: 10.0
+INFO:tests.common.plugins.memory_utilization:After test: collected memory_values {'before_test': {'sm100-109': {'top': {'zebra': 20.9, 'bgpd': 14.2}, 'free': {'used': 2232}, 'docker': {'lldp': 0.9, 'bgp': 1.8, 'syncd': 0.6, 'teamd': 0.6, 'swss': 0.9, 'pmon': 2.9, 'database': 2.2}, 'frr_bgp': {'used': 8.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.4}}}, 'after_test': {'sm100-109': {'top': {'zebra': 20.9, 'bgpd': 14.2}, 'free': {'used': 2212}, 'docker': {'lldp': 0.9, 'bgp': 1.8, 'syncd': 0.6, 'teamd': 0.6, 'swss': 0.9, 'pmon': 2.9, 'database': 2.2}, 'frr_bgp': {'used': 8.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.5}}}}
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Process analyze_logs--<MultiAsicSonicHost sm100-109>:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/var/src/SonicMmt/tests/common/helpers/parallel.py", line 92, in run
+    raise e
+  File "/var/src/SonicMmt/tests/common/helpers/parallel.py", line 87, in run
+    Process.run(self)
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/var/src/SonicMmt/tests/common/helpers/parallel.py", line 323, in wrapper
+    target(*args, **kwargs)
+  File "/var/src/SonicMmt/tests/common/plugins/loganalyzer/__init__.py", line 53, in analyze_logs
+    analyzer_summary = dut_analyzer.analyze(markers[node.hostname], fail_test, store_la_logs=store_la_logs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/src/SonicMmt/tests/common/plugins/loganalyzer/loganalyzer.py", line 528, in analyze
+    self._verify_log(analyzer_summary)
+  File "/var/src/SonicMmt/tests/common/plugins/loganalyzer/loganalyzer.py", line 234, in _verify_log
+    raise LogAnalyzerError(result_str)
+tests.common.plugins.loganalyzer.loganalyzer.LogAnalyzerError: match: 75
+expected_match: 0
+expected_missing_match: 0
+
+Match Messages:
+2026 May 15 14:45:02.605492 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:02.607809 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:02.607809 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:04.003691 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:04.003893 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:04.004080 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:04.173683 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:04.173772 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:04.173858 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:06.399885 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:06.402864 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:06.402864 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:10.202713 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:10.205005 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:10.205005 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:14.000321 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:14.001091 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:14.001313 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:14.001559 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:14.003192 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:14.004463 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:14.172124 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:14.172237 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:14.172323 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:17.798709 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:17.801411 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:17.801411 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:21.598176 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:21.600661 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:21.600661 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:24.003629 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:24.003748 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:24.003839 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:24.206569 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:24.206677 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:24.206757 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:25.398921 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:25.400693 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:25.400693 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:29.190281 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:29.191972 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:29.192284 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:32.991252 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:32.994099 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:32.994702 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:34.008048 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:34.008993 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.009843 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.012699 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:34.012866 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.012954 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.193226 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:34.193446 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.194050 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.216172 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:34.216255 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:34.216331 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:36.823158 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:36.825168 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:36.825298 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:40.658431 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:40.662603 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:40.662735 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+2026 May 15 14:45:44.007394 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:44.007508 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:44.007596 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:44.045133 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:44.046198 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:44.047185 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:44.208911 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+
+2026 May 15 14:45:44.208995 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:44.209112 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+
+2026 May 15 14:45:44.478373 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+
+2026 May 15 14:45:44.481204 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+
+2026 May 15 14:45:44.481204 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+WARNING:tests.conftest:Core dump or config check failed for test_ssh_default_password.py, results: {"core_dump_check": {"failed": false, "new_core_dumps": {"sm100-109": []}}, "config_db_check": {"failed": true, "pre_only_config": {"sm100-109": {"null": {}}}, "cur_only_config": {"sm100-109": {"null": {}}}, "inconsistent_config": {"sm100-109": {"null": {"VLAN": {"pre_value": {"Vlan1": {"admin_status": "down", "aging_time": "300", "maximum_mac_limit": "64", "vlanid": "1"}, "Vlan100": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "100"}, "Vlan200": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "200"}}, "cur_value": {"S-Vlan2": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "mtu": "9100", "terminate": "true", "tpid": "0x88A8", "vlanid": "2"}, "Vlan1": {"admin_status": "up", "aging_time": "300", "maximum_mac_limit": "64", "vlanid": "1"}, "Vlan100": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "100"}, "Vlan200": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "200"}}}, "VLAN_MEMBER": {"pre_value": {"Vlan100|Ethernet0": {"tagging_mode": "tagged"}, "Vlan1|Ethernet0": {"tagging_mode": "untagged"}, "Vlan1|Ethernet1": {"tagging_mode": "untagged"}, "Vlan1|Ethernet10": {"tagging_mode": "untagged"}, "Vlan1|Ethernet11": {"tagging_mode": "untagged"}, "Vlan1|Ethernet12": {"tagging_mode": "untagged"}, "Vlan1|Ethernet13": {"tagging_mode": "untagged"}, "Vlan1|Ethernet14": {"tagging_mode": "untagged"}, "Vlan1|Ethernet15": {"tagging_mode": "untagged"}, "Vlan1|Ethernet2": {"tagging_mode": "untagged"}, "Vlan1|Ethernet3": {"tagging_mode": "untagged"}, "Vlan1|Ethernet4": {"tagging_mode": "untagged"}, "Vlan1|Ethernet5": {"tagging_mode": "untagged"}, "Vlan1|Ethernet6": {"tagging_mode": "untagged"}, "Vlan1|Ethernet7": {"tagging_mode": "untagged"}, "Vlan1|Ethernet8": {"tagging_mode": "untagged"}, "Vlan1|Ethernet9": {"tagging_mode": "untagged"}, "Vlan200|Ethernet15": {"tagging_mode": "tagged"}}, "cur_value": {"S-Vlan2|Ethernet15": {"tagging_mode": "double_tagged"}, "S-Vlan2|Vlan1": {"tagging_mode": "tagged"}, "Vlan100|Ethernet0": {"tagging_mode": "tagged"}, "Vlan1|Ethernet0": {"tagging_mode": "tagged"}, "Vlan1|Ethernet1": {"tagging_mode": "untagged"}, "Vlan1|Ethernet10": {"tagging_mode": "untagged"}, "Vlan1|Ethernet11": {"tagging_mode": "untagged"}, "Vlan1|Ethernet12": {"tagging_mode": "untagged"}, "Vlan1|Ethernet13": {"tagging_mode": "untagged"}, "Vlan1|Ethernet14": {"tagging_mode": "untagged"}, "Vlan1|Ethernet15": {"tagging_mode": "untagged"}, "Vlan1|Ethernet2": {"tagging_mode": "untagged"}, "Vlan1|Ethernet3": {"tagging_mode": "untagged"}, "Vlan1|Ethernet4": {"tagging_mode": "untagged"}, "Vlan1|Ethernet5": {"tagging_mode": "untagged"}, "Vlan1|Ethernet6": {"tagging_mode": "untagged"}, "Vlan1|Ethernet7": {"tagging_mode": "untagged"}, "Vlan1|Ethernet8": {"tagging_mode": "untagged"}, "Vlan1|Ethernet9": {"tagging_mode": "untagged"}, "Vlan200|Ethernet15": {"tagging_mode": "tagged"}}}}}}}}
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password ERROR
+
+==================================== ERRORS ====================================
+________________ ERROR at teardown of test_ssh_default_password ________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/opt/venv/lib/python3.12/site-packages/_pytest/runner.py", line 353, in from_call
+  |     result: TResult | None = func()
+  |                              ^^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/_pytest/runner.py", line 245, in <lambda>
+  |     lambda: runtest_hook(item=item, **kwds),
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+  |     return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+  |     return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 167, in _multicall
+  |     raise exception
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+  |     teardown.throw(exception)
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 53, in run_old_style_hookwrapper
+  |     return result.get_result()
+  |            ^^^^^^^^^^^^^^^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_result.py", line 103, in get_result
+  |     raise exc.with_traceback(tb)
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 38, in run_old_style_hookwrapper
+  |     res = yield
+  |           ^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+  |     teardown.throw(exception)
+  |   File "/opt/venv/lib/python3.12/site-packages/_pytest/logging.py", line 858, in pytest_runtest_teardown
+  |     yield
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 139, in _multicall
+  |     teardown.throw(exception)
+  |   File "/opt/venv/lib/python3.12/site-packages/_pytest/capture.py", line 905, in pytest_runtest_teardown
+  |     return (yield)
+  |             ^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+  |     res = hook_impl.function(*args)
+  |           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/opt/venv/lib/python3.12/site-packages/_pytest/runner.py", line 194, in pytest_runtest_teardown
+  |     item.session._setupstate.teardown_exact(nextitem)
+  |   File "/opt/venv/lib/python3.12/site-packages/_pytest/runner.py", line 568, in teardown_exact
+  |     raise BaseExceptionGroup("errors during test teardown", exceptions[::-1])
+  | BaseExceptionGroup: errors during test teardown (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/var/src/SonicMmt/tests/common/helpers/multi_thread_utils.py", line 45, in _wrapper
+    |     return fn(*fn_args, **fn_kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/plugins/loganalyzer/utils.py", line 25, in decorated
+    |     res = func(*args, **kwargs)
+    |           ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/helpers/parallel_utils.py", line 336, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/config_reload.py", line 273, in config_reload
+    |     if config_force_option_supported(sonic_host):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/config_reload.py", line 70, in config_force_option_supported
+    |     out = duthost.shell("config reload -h", executable="/bin/bash")
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/devices/multi_asic.py", line 386, in _run_on_asics_wrapper
+    |     return self._run_on_asics(attr, *module_args, **complex_args)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/devices/multi_asic.py", line 158, in _run_on_asics
+    |     return getattr(self.sonichost, multi_asic_attr)(*module_args, **complex_args)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/devices/base.py", line 115, in _run_wrapper
+    |     return self._run(module_name, *module_args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/devices/base.py", line 198, in _run
+    |     raise RunAnsibleModuleFail("run module {} failed".format(module_name), hostname_res)
+    | tests.common.errors.RunAnsibleModuleFail: run module shell failed, Ansible Results =>
+    | failed = True
+    | changed = True
+    | rc = 2
+    | cmd = config reload -h
+    | start = 2026-05-15 14:46:09.844644
+    | end = 2026-05-15 14:46:12.079310
+    | delta = 0:00:02.234666
+    | msg = non-zero return code
+    | invocation = {'module_args': {'executable': '/bin/bash', '_raw_params': 'config reload -h', '_uses_shell': True, 'expand_argument_vars': True, 'stdin_add_newline': True, 'strip_empty_ends': True, 'argv': None, 'chdir': None, 'creates': None, 'removes': None, 'stdin': None}}
+    | _ansible_no_log = False
+    | stdout =
+    | stderr =
+    | Usage: config [OPTIONS] COMMAND [ARGS]...
+    | Try "config -h" for help.
+    | 
+    | Error: No such command "reload".
+    | 
+    | During handling of the above exception, another exception occurred:
+    | 
+    | Traceback (most recent call last):
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/runner.py", line 555, in teardown_exact
+    |     fin()
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/fixtures.py", line 1053, in finish
+    |     raise exceptions[0]
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/fixtures.py", line 1042, in finish
+    |     fin()
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/fixtures.py", line 924, in _teardown_yield_fixture
+    |     next(it)
+    |   File "/var/src/SonicMmt/tests/conftest.py", line 3338, in core_dump_and_config_check
+    |     restore_config_db_and_config_reload(duts_data, duthosts, request)
+    |   File "/var/src/SonicMmt/tests/conftest.py", line 3013, in restore_config_db_and_config_reload
+    |     with SafeThreadPoolExecutor(max_workers=8) as executor:
+    |   File "/var/src/SonicMmt/tests/common/helpers/multi_thread_utils.py", line 75, in __exit__
+    |     async_res.get()
+    |   File "/usr/lib/python3.12/multiprocessing/pool.py", line 774, in get
+    |     raise self._value
+    |   File "/usr/lib/python3.12/multiprocessing/pool.py", line 125, in worker
+    |     result = (True, func(*args, **kwds))
+    |                     ^^^^^^^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/helpers/multi_thread_utils.py", line 47, in _wrapper
+    |     raise RuntimeError("Thread worker aborted: " + repr(be))
+    | RuntimeError: Thread worker aborted: run module shell failed, Ansible Results =>
+    | failed = True
+    | changed = True
+    | rc = 2
+    | cmd = config reload -h
+    | start = 2026-05-15 14:46:09.844644
+    | end = 2026-05-15 14:46:12.079310
+    | delta = 0:00:02.234666
+    | msg = non-zero return code
+    | invocation = {'module_args': {'executable': '/bin/bash', '_raw_params': 'config reload -h', '_uses_shell': True, 'expand_argument_vars': True, 'stdin_add_newline': True, 'strip_empty_ends': True, 'argv': None, 'chdir': None, 'creates': None, 'removes': None, 'stdin': None}}
+    | _ansible_no_log = False
+    | stdout =
+    | stderr =
+    | Usage: config [OPTIONS] COMMAND [ARGS]...
+    | Try "config -h" for help.
+    | 
+    | Error: No such command "reload".
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/runner.py", line 555, in teardown_exact
+    |     fin()
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/fixtures.py", line 1053, in finish
+    |     raise exceptions[0]
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/fixtures.py", line 1042, in finish
+    |     fin()
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/fixtures.py", line 924, in _teardown_yield_fixture
+    |     next(it)
+    |   File "/var/src/SonicMmt/tests/common/plugins/loganalyzer/__init__.py", line 105, in loganalyzer
+    |     la_results = parallel_run(
+    |                  ^^^^^^^^^^^^^
+    |   File "/var/src/SonicMmt/tests/common/helpers/parallel.py", line 294, in parallel_run
+    |     pt_assert(False, failure_message)
+    |   File "/var/src/SonicMmt/tests/common/helpers/assertions.py", line 9, in pytest_assert
+    |     pytest.fail(message)
+    |   File "/opt/venv/lib/python3.12/site-packages/_pytest/outcomes.py", line 163, in __call__
+    |     raise Failed(msg=reason, pytrace=pytrace)
+    | Failed: Got matched syslog in processes "analyze_logs--<MultiAsicSonicHost sm100-109>" exit code:"1"
+    | match: 75
+    | expected_match: 0
+    | expected_missing_match: 0
+    | 
+    | Match Messages:
+    | 2026 May 15 14:45:02.605492 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:02.607809 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:02.607809 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:04.003691 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:04.003893 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:04.004080 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:04.173683 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:04.173772 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:04.173858 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:06.399885 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:06.402864 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:06.402864 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:10.202713 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:10.205005 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:10.205005 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:14.000321 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:14.001091 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:14.001313 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:14.001559 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:14.003192 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:14.004463 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:14.172124 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:14.172237 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:14.172323 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:17.798709 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:17.801411 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:17.801411 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:21.598176 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:21.600661 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:21.600661 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:24.003629 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:24.003748 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:24.003839 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:24.206569 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:24.206677 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:24.206757 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:25.398921 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:25.400693 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:25.400693 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:29.190281 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:29.191972 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:29.192284 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:32.991252 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:32.994099 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:32.994702 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:34.008048 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.008993 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.009843 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.012699 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.012866 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.012954 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.193226 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.193446 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.194050 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.216172 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.216255 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:34.216331 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:36.823158 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:36.825168 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:36.825298 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:40.658431 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:40.662603 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:40.662735 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    | 2026 May 15 14:45:44.007394 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.007508 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.007596 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.045133 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.046198 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.047185 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.208911 sonic-3AA21C ERR chassis: Not OK or critical status detected for Hardware: {'type': 'PSU', 'message': 'PSU 2 is missing or not available', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.208995 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/slots_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.209112 sonic-3AA21C ERR chassis: Not OK or critical status detected for UserDefine: {'type': 'UserDefine', 'message': 'Failed to get output of command "python3 /usr/bin/OBD/system_health_checker/fabric_checker.py"', 'status': 'Critical'}
+    | 
+    | 2026 May 15 14:45:44.478373 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_input does not exists
+    | 
+    | 2026 May 15 14:45:44.481204 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_warning_max does not exists
+    | 
+    | 2026 May 15 14:45:44.481204 sonic-3AA21C ERR pmon#psud[31]: PSU 2 HWMON parameter file /power2_critical_max does not exists
+    | 
+    +------------------------------------
+------------------------------ Captured log setup ------------------------------
+INFO     tests.common.plugins.memory_utilization:__init__.py:151 Hostname: sm100-109, Hwsku: Canoga-SM100, Platform: x86_64-canoga_sm100_sa5-r0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:420 Loading memory monitoring commands for hwsku: Canoga-SM100
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:23 Registering command: name=top, cmd=top -b -n 1, memory_params={'bgpd': {'memory_increase_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': None}, 'zebra': {'memory_increase_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': None}}, memory_check=<function parse_top_output at 0x7269e1ba3ce0>
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:23 Registering command: name=free, cmd=free -m, memory_params={'used': {'memory_increase_threshold': {'type': 'percentage', 'value': '20%'}, 'memory_high_threshold': None}}, memory_check=<function parse_free_output at 0x7269e1ba3d80>
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:23 Registering command: name=docker, cmd=docker stats --no-stream, memory_params={'snmp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 4}}, 'pmon': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 8}}, 'lldp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 4}}, 'gnmi': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 6}}, 'radv': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 3}}, 'syncd': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 7}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 22}}, 'bgp': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 4}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 14}}, 'teamd': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 5}}, 'swss': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 5}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 10}}, 'database': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 2}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 6}}}, memory_check=<function parse_docker_stats_output at 0x7269e1ba3ec0>
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:23 Registering command: name=frr_bgp, cmd=vtysh -c "show memory bgp", memory_params={'used': {'memory_increase_threshold': [{'type': 'percentage', 'value': '50%'}, {'type': 'value', 'value': 64}, {'type': 'comparison', 'value': 'max'}], 'memory_high_threshold': {'type': 'value', 'value': 256}}}, memory_check=<function parse_frr_memory_output at 0x7269e1ba3f60>
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:23 Registering command: name=frr_zebra, cmd=vtysh -c "show memory zebra", memory_params={'used': {'memory_increase_threshold': [{'type': 'percentage', 'value': '50%'}, {'type': 'value', 'value': 64}, {'type': 'comparison', 'value': 'max'}], 'memory_increase_fail_threshold': {'type': 'value', 'value': 128}, 'memory_high_threshold': {'type': 'value', 'value': 128}}}, memory_check=<function parse_frr_memory_output at 0x7269e1ba3f60>
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:23 Registering command: name=monit, cmd=sudo monit status, memory_params={'memory_usage': {'memory_increase_threshold': {'type': 'percentage_points', 'value': 10}, 'memory_high_threshold': {'type': 'percentage_points', 'value': 70}}}, memory_check=<function parse_monit_validate_output at 0x7269e1ba3e20>
+INFO     tests.common.plugins.memory_utilization:__init__.py:56 Triggering monit refresh on sm100-109 before collecting memory data
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:723 Total FRR memory used: 8.8 MB, holding: 0.0 bytes, small: 0.0 bytes, ordinary: 9185280.0 bytes
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:723 Total FRR memory used: 15.0 MB, holding: 1052672.0 bytes, small: 0.0 bytes, ordinary: 14680064.0 bytes
+INFO     tests.common.plugins.memory_utilization:__init__.py:68 Before test: collected memory_values {'before_test': {'sm100-109': {'top': {'zebra': 20.9, 'bgpd': 14.2}, 'free': {'used': 2232}, 'docker': {'lldp': 0.9, 'bgp': 1.8, 'syncd': 0.6, 'teamd': 0.6, 'swss': 0.9, 'pmon': 2.9, 'database': 2.2}, 'frr_bgp': {'used': 8.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.4}}}, 'after_test': {'sm100-109': {}}}
+---------------------------- Captured log teardown -----------------------------
+INFO     tests.common.plugins.memory_utilization:__init__.py:99 Triggering monit refresh on sm100-109 before collecting memory data
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:723 Total FRR memory used: 8.8 MB, holding: 0.0 bytes, small: 0.0 bytes, ordinary: 9185280.0 bytes
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:723 Total FRR memory used: 15.0 MB, holding: 1052672.0 bytes, small: 0.0 bytes, ordinary: 14680064.0 bytes
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: top-bgpd
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for top:bgpd: 128.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: top-zebra
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for top:zebra: 128.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: free-used
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for free:used: 446.4
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-snmp
+WARNING  tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:64 Skipping memory check for docker-snmp due to zero value
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-pmon
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:pmon: 8.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:pmon: 2.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-lldp
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:lldp: 4.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:lldp: 2.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-gnmi
+WARNING  tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:64 Skipping memory check for docker-gnmi due to zero value
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-radv
+WARNING  tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:64 Skipping memory check for docker-radv due to zero value
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-syncd
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:syncd: 22.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:syncd: 7.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-bgp
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:bgp: 14.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:bgp: 4.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-teamd
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:teamd: 5.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:teamd: 2.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-swss
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:swss: 10.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:swss: 5.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: docker-database
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for docker:database: 6.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for docker:database: 2.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: frr_bgp-used
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for frr_bgp:used: 256.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:247 Selected max threshold from list: 64.0 (from values: [4.4, 64.0])
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for frr_bgp:used: 64.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: frr_zebra-used
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for frr_zebra:used: 128.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:247 Selected max threshold from list: 64.0 (from values: [7.5, 64.0])
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for frr_zebra:used: 64.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:102 Calculated increase fail threshold for frr_zebra:used: 128.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:53 Checking thresholds for command: monit-memory_usage
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:75 Calculated high threshold for monit:memory_usage: 70.0
+INFO     tests.common.plugins.memory_utilization.memory_utilization:memory_utilization.py:97 Calculated increase threshold for monit:memory_usage: 10.0
+INFO     tests.common.plugins.memory_utilization:__init__.py:132 After test: collected memory_values {'before_test': {'sm100-109': {'top': {'zebra': 20.9, 'bgpd': 14.2}, 'free': {'used': 2232}, 'docker': {'lldp': 0.9, 'bgp': 1.8, 'syncd': 0.6, 'teamd': 0.6, 'swss': 0.9, 'pmon': 2.9, 'database': 2.2}, 'frr_bgp': {'used': 8.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.4}}}, 'after_test': {'sm100-109': {'top': {'zebra': 20.9, 'bgpd': 14.2}, 'free': {'used': 2212}, 'docker': {'lldp': 0.9, 'bgp': 1.8, 'syncd': 0.6, 'teamd': 0.6, 'swss': 0.9, 'pmon': 2.9, 'database': 2.2}, 'frr_bgp': {'used': 8.8}, 'frr_zebra': {'used': 15.0}, 'monit': {'memory_usage': 32.5}}}}
+WARNING  tests.conftest:conftest.py:3335 Core dump or config check failed for test_ssh_default_password.py, results: {"core_dump_check": {"failed": false, "new_core_dumps": {"sm100-109": []}}, "config_db_check": {"failed": true, "pre_only_config": {"sm100-109": {"null": {}}}, "cur_only_config": {"sm100-109": {"null": {}}}, "inconsistent_config": {"sm100-109": {"null": {"VLAN": {"pre_value": {"Vlan1": {"admin_status": "down", "aging_time": "300", "maximum_mac_limit": "64", "vlanid": "1"}, "Vlan100": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "100"}, "Vlan200": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "200"}}, "cur_value": {"S-Vlan2": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "mtu": "9100", "terminate": "true", "tpid": "0x88A8", "vlanid": "2"}, "Vlan1": {"admin_status": "up", "aging_time": "300", "maximum_mac_limit": "64", "vlanid": "1"}, "Vlan100": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "100"}, "Vlan200": {"admin_status": "up", "aging_time": "300", "frer": "false", "learn_disable": "false", "maximum_mac_limit": "64", "rspan": "false", "vlanid": "200"}}}, "VLAN_MEMBER": {"pre_value": {"Vlan100|Ethernet0": {"tagging_mode": "tagged"}, "Vlan1|Ethernet0": {"tagging_mode": "untagged"}, "Vlan1|Ethernet1": {"tagging_mode": "untagged"}, "Vlan1|Ethernet10": {"tagging_mode": "untagged"}, "Vlan1|Ethernet11": {"tagging_mode": "untagged"}, "Vlan1|Ethernet12": {"tagging_mode": "untagged"}, "Vlan1|Ethernet13": {"tagging_mode": "untagged"}, "Vlan1|Ethernet14": {"tagging_mode": "untagged"}, "Vlan1|Ethernet15": {"tagging_mode": "untagged"}, "Vlan1|Ethernet2": {"tagging_mode": "untagged"}, "Vlan1|Ethernet3": {"tagging_mode": "untagged"}, "Vlan1|Ethernet4": {"tagging_mode": "untagged"}, "Vlan1|Ethernet5": {"tagging_mode": "untagged"}, "Vlan1|Ethernet6": {"tagging_mode": "untagged"}, "Vlan1|Ethernet7": {"tagging_mode": "untagged"}, "Vlan1|Ethernet8": {"tagging_mode": "untagged"}, "Vlan1|Ethernet9": {"tagging_mode": "untagged"}, "Vlan200|Ethernet15": {"tagging_mode": "tagged"}}, "cur_value": {"S-Vlan2|Ethernet15": {"tagging_mode": "double_tagged"}, "S-Vlan2|Vlan1": {"tagging_mode": "tagged"}, "Vlan100|Ethernet0": {"tagging_mode": "tagged"}, "Vlan1|Ethernet0": {"tagging_mode": "tagged"}, "Vlan1|Ethernet1": {"tagging_mode": "untagged"}, "Vlan1|Ethernet10": {"tagging_mode": "untagged"}, "Vlan1|Ethernet11": {"tagging_mode": "untagged"}, "Vlan1|Ethernet12": {"tagging_mode": "untagged"}, "Vlan1|Ethernet13": {"tagging_mode": "untagged"}, "Vlan1|Ethernet14": {"tagging_mode": "untagged"}, "Vlan1|Ethernet15": {"tagging_mode": "untagged"}, "Vlan1|Ethernet2": {"tagging_mode": "untagged"}, "Vlan1|Ethernet3": {"tagging_mode": "untagged"}, "Vlan1|Ethernet4": {"tagging_mode": "untagged"}, "Vlan1|Ethernet5": {"tagging_mode": "untagged"}, "Vlan1|Ethernet6": {"tagging_mode": "untagged"}, "Vlan1|Ethernet7": {"tagging_mode": "untagged"}, "Vlan1|Ethernet8": {"tagging_mode": "untagged"}, "Vlan1|Ethernet9": {"tagging_mode": "untagged"}, "Vlan200|Ethernet15": {"tagging_mode": "tagged"}}}}}}}}
+=============================== warnings summary ===============================
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.ptfadapter
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.ansible_fixtures
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.loganalyzer
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.sanity_check
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.plugins.test_completeness
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.dualtor
+    self.import_plugin(import_spec)
+
+../../../opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858
+  /opt/venv/lib/python3.12/site-packages/_pytest/config/__init__.py:858: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; tests.common.fixtures.duthost_utils
+    self.import_plugin(import_spec)
+
+tests/ptf_runner.py:3
+  /var/src/SonicMmt/tests/ptf_runner.py:3: DeprecationWarning: 'pipes' is deprecated and slated for removal in Python 3.13
+    import pipes
+
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password
+  /opt/venv/lib/python3.12/site-packages/pytest_ansible/host_manager/v213.py:13: DeprecationWarning: Host management is deprecated and will be removed in a future release
+    class HostManagerV213(BaseHostManager):
+
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password
+tests/ssh/test_ssh_default_password.py::test_ssh_default_password
+  /opt/venv/lib/python3.12/site-packages/ansible/plugins/loader.py:1485: UserWarning: AnsibleCollectionFinder has already been configured
+    warnings.warn('AnsibleCollectionFinder has already been configured')
+
+tests/ssh/test_ssh_default_password.py: 36 warnings
+  /usr/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=4829) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/ssh/test_ssh_default_password.py::test_ssh_default_password - BaseExceptionGroup: errors during test teardown (2 sub-exceptions)
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+============= 1 passed, 49 warnings, 1 error in 109.65s (0:01:49) ==============

@@ -5,7 +5,7 @@ from tests.common.constants import DEFAULT_SSH_CONNECT_PARAMS
 from tests.common.utilities import get_image_type
 
 pytestmark = [
-    pytest.mark.disable_loganalyzer,
+    # pytest.mark.disable_loganalyzer,
     pytest.mark.topology("any")
 ]
 

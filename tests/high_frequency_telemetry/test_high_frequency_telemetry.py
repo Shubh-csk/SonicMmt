@@ -829,7 +829,7 @@ def test_hft_port_shutdown_stream(duthosts, enum_rand_one_per_hwsku_hostname,
     logger.info(f"Using port for testing: {test_port}")
 
     # Get PTF port mapping for traffic injection
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ptf_port_index = mg_facts['minigraph_ptf_indices'][test_port]
 
     logger.info(f"Test port {test_port} maps to PTF port index {ptf_port_index}")

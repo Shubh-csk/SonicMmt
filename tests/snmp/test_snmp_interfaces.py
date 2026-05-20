@@ -66,7 +66,7 @@ def get_interfaces(duthost, tbinfo):
         if 'Eth' in interface:
             return [interface], interface
         else:
-            mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+            config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
             if interface not in mg_facts["minigraph_portchannels"].keys() or \
                not mg_facts["minigraph_portchannels"][interface]['members']:
                 continue

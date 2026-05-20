@@ -451,7 +451,7 @@ def run_static_route_test(duthost, unselected_duthost, ptfadapter, ptfhost, tbin
 
 
 def get_nexthops(duthost, tbinfo, ipv6=False, count=1):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # Filter VLANs with one interface inside only(PortChannel interface in case of t0-56-po2vlan topo)
     unexpected_vlans = []

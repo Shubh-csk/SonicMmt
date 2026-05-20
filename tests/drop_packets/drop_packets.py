@@ -288,7 +288,7 @@ def get_fanout_obj(conn_graph_facts, duthost, fanouthosts):
 def pkt_fields(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinfo):
     duthost = duthosts[enum_rand_one_per_hwsku_frontend_hostname]
     # Gather ansible facts
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     ipv4_addr = None
     ipv6_addr = None
 
@@ -356,7 +356,7 @@ def setup(duthosts, enum_rand_one_per_hwsku_frontend_hostname, tbinfo):
             duthost.interface_facts(namespace=ns)['ansible_facts']['ansible_interface_facts']
 
     # Gather ansible facts
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     for port_channel, interfaces in list(mg_facts['minigraph_portchannels'].items()):
         for iface in interfaces["members"]:

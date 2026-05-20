@@ -110,7 +110,7 @@ def setup(duthosts, rand_one_dut_hostname, tbinfo, nbrhosts):
     if not constants_stat['stat']['exists']:
         pytest.skip('No file {} on DUT, BBR is not supported')
     bbr_default_state = 'disabled'
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     tor_neighbors = natsorted([neighbor for neighbor in list(nbrhosts.keys()) if neighbor.endswith('T0')])
     tor1 = tor_neighbors[0]
     tor1_namespace = DEFAULT_NAMESPACE

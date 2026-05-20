@@ -487,7 +487,7 @@ def load_macsec_info_for_ptf_id(duthost, ptf_id, port, force_reload=None):
 
 # This API load the macsec session details from all ctrl links
 def load_all_macsec_info(duthost, ctrl_links, tbinfo):
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     for port, nbr in ctrl_links.items():
         ptf_id = mg_facts["minigraph_ptf_indices"][port]
         MACSEC_INFO[ptf_id] = get_macsec_attr(duthost, port)

@@ -154,7 +154,7 @@ def construct_url(duthosts, rand_one_dut_hostname):
 def vlan_members(duthosts, rand_one_dut_hostname, tbinfo):
     duthost = duthosts[rand_one_dut_hostname]
     VLAN_INDEX = 0
-    mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
     if mg_facts["minigraph_vlans"] != {}:
         vlan_interfaces = list(mg_facts["minigraph_vlans"].values())[
             VLAN_INDEX]["members"]

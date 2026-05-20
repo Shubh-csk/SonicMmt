@@ -242,7 +242,7 @@ def test_po_update_io_no_loss(
     asichost = duthost.asic_instance(enum_frontend_asic_index)
     mg_facts = asichost.get_extended_minigraph_facts(tbinfo)
 
-    dut_mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    dut_config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # generate ip-pc pairs, be like:[("10.0.0.56", "10.0.0.57", "PortChannel0001")]
     peer_ip_pc_pair = [(pc["addr"], pc["peer_addr"], pc["attachto"],
@@ -563,7 +563,7 @@ def test_po_update_with_higher_lagids(
         # Skip the test if the setup is not T2 Chassis
         pytest.skip("Test is Applicable for T2 VOQ Chassis Setup")
 
-    dut_mg_facts = duthost.get_extended_minigraph_facts(tbinfo)
+    dut_config_facts = duthost.config_facts(host=duthost.hostname, source="running")['ansible_facts']
 
     # Send initial data to the device
     send_data(dut_mg_facts, duthost, ptfadapter)
